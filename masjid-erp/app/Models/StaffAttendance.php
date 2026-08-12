@@ -19,4 +19,9 @@ class StaffAttendance extends Model
         'overtime_hours',
         'remarks'
     ];
+
+    public function staff()
+    {
+        return $this->belongsTo(Staff::class);
+    }
 }

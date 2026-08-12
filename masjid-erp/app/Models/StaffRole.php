@@ -18,4 +18,9 @@ class StaffRole extends Model
         'salary_max',
         'is_active'
     ];
+
+    public function staff()
+    {
+        return $this->hasMany(Staff::class, 'staff_role_id');
+    }
 }

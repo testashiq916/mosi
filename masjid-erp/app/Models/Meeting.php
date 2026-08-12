@@ -27,4 +27,21 @@ class Meeting extends Model
         'status',
         'created_by'
     ];
+
+    protected $casts = [
+        'meeting_date' => 'datetime',
+        'end_time' => 'datetime',
+        'attendance' => 'array',
+        'documents' => 'array',
+    ];
+
+    public function committee()
+    {
+        return $this->belongsTo(Committee::class);
+    }
+
+    public function actionItems()
+    {
+        return $this->hasMany(MeetingAction::class);
+    }
 }

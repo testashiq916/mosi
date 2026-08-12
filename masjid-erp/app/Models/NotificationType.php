@@ -18,4 +18,13 @@ class NotificationType extends Model
         'channels',
         'is_active'
     ];
+
+    protected $casts = [
+        'channels' => 'array',
+    ];
+
+    public function queueEntries()
+    {
+        return $this->hasMany(NotificationQueue::class, 'notification_type_id');
+    }
 }

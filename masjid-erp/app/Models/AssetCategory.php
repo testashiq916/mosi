@@ -17,4 +17,9 @@ class AssetCategory extends Model
         'depreciation_rate',
         'is_active'
     ];
+
+    public function assets()
+    {
+        return $this->hasMany(FixedAsset::class, 'category_id');
+    }
 }

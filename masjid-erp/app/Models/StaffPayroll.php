@@ -30,4 +30,13 @@ class StaffPayroll extends Model
         'notes',
         'created_by'
     ];
+
+    protected $casts = [
+        'deductions' => 'array',
+    ];
+
+    public function staff()
+    {
+        return $this->belongsTo(Staff::class);
+    }
 }

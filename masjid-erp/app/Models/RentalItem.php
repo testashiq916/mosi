@@ -18,4 +18,14 @@ class RentalItem extends Model
         'damaged_quantity',
         'notes'
     ];
+
+    public function rental()
+    {
+        return $this->belongsTo(UtensilRental::class, 'rental_id');
+    }
+
+    public function utensil()
+    {
+        return $this->belongsTo(Utensil::class);
+    }
 }

@@ -15,4 +15,9 @@ class Committee extends Model
         'description',
         'is_active'
     ];
+
+    public function meetings()
+    {
+        return $this->hasMany(Meeting::class);
+    }
 }

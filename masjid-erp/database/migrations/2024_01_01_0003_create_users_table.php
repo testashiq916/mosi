@@ -16,6 +16,7 @@ return new class extends Migration
 CREATE TABLE users (
     id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     company_id BIGINT UNSIGNED,
+    masjid_id BIGINT UNSIGNED,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     email_verified_at TIMESTAMP NULL,
@@ -24,7 +25,8 @@ CREATE TABLE users (
     remember_token VARCHAR(100),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (company_id) REFERENCES companies(id)
+    FOREIGN KEY (company_id) REFERENCES companies(id),
+    FOREIGN KEY (masjid_id) REFERENCES masjids(id)
 );
 SQL
         );

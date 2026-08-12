@@ -40,4 +40,19 @@ class MahallaResident extends Model
         'subscription_end_date',
         'created_by'
     ];
+
+    public function dependents()
+    {
+        return $this->hasMany(ResidentDependent::class, 'resident_id');
+    }
+
+    public function residentType()
+    {
+        return $this->belongsTo(ResidentType::class, 'resident_type_id');
+    }
+
+    public function member()
+    {
+        return $this->belongsTo(Member::class);
+    }
 }

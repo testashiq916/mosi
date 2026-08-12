@@ -31,4 +31,27 @@ class UtensilRental extends Model
         'condition_notes',
         'created_by'
     ];
+
+    protected $casts = [
+        'rental_date' => 'date',
+        'return_date' => 'date',
+        'expected_return_date' => 'date',
+        'checked_out_at' => 'datetime',
+        'checked_in_at' => 'datetime',
+    ];
+
+    public function items()
+    {
+        return $this->hasMany(RentalItem::class, 'rental_id');
+    }
+
+    public function resident()
+    {
+        return $this->belongsTo(MahallaResident::class, 'resident_id');
+    }
+
+    public function member()
+    {
+        return $this->belongsTo(Member::class);
+    }
 }

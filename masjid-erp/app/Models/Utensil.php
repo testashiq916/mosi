@@ -29,4 +29,14 @@ class Utensil extends Model
         'status',
         'created_by'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(UtensilCategory::class, 'category_id');
+    }
+
+    public function rentalItems()
+    {
+        return $this->hasMany(RentalItem::class);
+    }
 }

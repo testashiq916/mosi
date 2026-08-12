@@ -18,4 +18,14 @@ class MeetingAction extends Model
         'completed_at',
         'remarks'
     ];
+
+    public function meeting()
+    {
+        return $this->belongsTo(Meeting::class);
+    }
+
+    public function assignee()
+    {
+        return $this->belongsTo(User::class, 'assigned_to');
+    }
 }

@@ -25,4 +25,13 @@ class NotificationQueue extends Model
         'retry_count',
         'created_by'
     ];
+
+    protected $casts = [
+        'data' => 'array',
+    ];
+
+    public function type()
+    {
+        return $this->belongsTo(NotificationType::class, 'notification_type_id');
+    }
 }

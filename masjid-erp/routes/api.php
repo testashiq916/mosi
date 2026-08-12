@@ -4,19 +4,17 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Sample API Routes for Additional Modules
+| Admin API Routes for Additional Modules
 |--------------------------------------------------------------------------
-| This is the routing file exactly as it was found in the source dump
-| (deepseek_php_20260728_6d2bb6.php). It references MahallaController,
-| MarriageController, UtensilController, MeetingController,
-| AssetController, StaffController and NotificationController — none of
-| those controllers were included in the zip, only the database schema
-| for their underlying tables (see database/migrations and
-| database/schema). The route list itself registers fine (PHP does not
-| resolve ::class references at load time), but every endpoint below will
-| throw a class-not-found error the moment it's hit until those
-| controllers are written. Kept here unmodified as a reference for the
-| routes that go with the schema.
+| This route list is exactly as found in the source dump
+| (deepseek_php_20260728_6d2bb6.php) — method names, prefixes and nesting
+| are all original. The seven controllers it points at (Mahalla, Marriage,
+| Utensil, Meeting, Asset, Staff, Notification) were NOT in the dump, only
+| the database schema for their tables was; they've since been implemented
+| in app/Http/Controllers/API/V1/ against that schema and are wired in
+| below. All are admin/staff-facing (auth:sanctum + AdminApiController's
+| company/masjid scoping), unlike routes/member.php which scopes by the
+| logged-in Member record.
 */
 
 use App\Http\Controllers\API\V1\Mahalla\MahallaController;

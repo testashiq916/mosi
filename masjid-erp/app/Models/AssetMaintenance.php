@@ -25,4 +25,13 @@ class AssetMaintenance extends Model
         'documents',
         'created_by'
     ];
+
+    protected $casts = [
+        'documents' => 'array',
+    ];
+
+    public function asset()
+    {
+        return $this->belongsTo(FixedAsset::class, 'asset_id');
+    }
 }

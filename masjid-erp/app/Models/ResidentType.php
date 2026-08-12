@@ -15,4 +15,9 @@ class ResidentType extends Model
         'description',
         'is_active'
     ];
+
+    public function residents()
+    {
+        return $this->hasMany(MahallaResident::class, 'resident_type_id');
+    }
 }

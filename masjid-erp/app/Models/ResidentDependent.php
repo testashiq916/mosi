@@ -16,4 +16,9 @@ class ResidentDependent extends Model
         'gender',
         'is_active'
     ];
+
+    public function resident()
+    {
+        return $this->belongsTo(MahallaResident::class, 'resident_id');
+    }
 }

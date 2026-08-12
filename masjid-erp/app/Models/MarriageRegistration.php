@@ -36,4 +36,13 @@ class MarriageRegistration extends Model
         'certificate_issued_at',
         'created_by'
     ];
+
+    protected $casts = [
+        'documents' => 'array',
+    ];
+
+    public function nocRequests()
+    {
+        return $this->hasMany(MarriageNocRequest::class);
+    }
 }

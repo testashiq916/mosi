@@ -16,4 +16,9 @@ class UtensilCategory extends Model
         'description',
         'is_active'
     ];
+
+    public function utensils()
+    {
+        return $this->hasMany(Utensil::class, 'category_id');
+    }
 }

@@ -44,4 +44,28 @@ class Staff extends Model
         'bank_ifsc',
         'created_by'
     ];
+
+    protected $casts = [
+        'allowances' => 'array',
+    ];
+
+    public function role()
+    {
+        return $this->belongsTo(StaffRole::class, 'staff_role_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function payroll()
+    {
+        return $this->hasMany(StaffPayroll::class);
+    }
+
+    public function attendance()
+    {
+        return $this->hasMany(StaffAttendance::class);
+    }
 }

@@ -26,4 +26,9 @@ class MarriageNocRequest extends Model
         'remarks',
         'created_by'
     ];
+
+    public function marriageRegistration()
+    {
+        return $this->belongsTo(MarriageRegistration::class);
+    }
 }

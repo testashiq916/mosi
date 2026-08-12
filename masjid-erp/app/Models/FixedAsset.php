@@ -33,4 +33,18 @@ class FixedAsset extends Model
         'documents',
         'created_by'
     ];
+
+    protected $casts = [
+        'documents' => 'array',
+    ];
+
+    public function category()
+    {
+        return $this->belongsTo(AssetCategory::class, 'category_id');
+    }
+
+    public function maintenanceRecords()
+    {
+        return $this->hasMany(AssetMaintenance::class, 'asset_id');
+    }
 }
