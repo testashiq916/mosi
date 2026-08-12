@@ -1,0 +1,32 @@
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              Presentation Layer                                │
+├─────────────────────┬─────────────────────┬───────────────────────────────────┤
+│  Web Admin          │  Member Portal      │   Mobile App                     │
+│  (Laravel/React)    │  (Laravel/React)    │   (Flutter)                      │
+├─────────────────────┴─────────────────────┴───────────────────────────────────┤
+│                              Application Layer                                │
+├─────────────────────┬─────────────────────┬───────────────────────────────────┤
+│  Core Modules       │  Admin Modules      │   SaaS Core                      │
+│  - Prayer Times     │  - Masjid Mgmt      │   - Multi-Tenant                │
+│  - Events           │  - User Mgmt        │   - Subscription                │
+│  - Notifications    │  - Reports          │   - RBAC                       │
+│  - Donations        │  - Configuration    │   - Audit Logs                 │
+├─────────────────────┼─────────────────────┼───────────────────────────────────┤
+│  Member Module      │  Financial Module   │   Accounting Module             │
+│  - Member Portal    │  - Receipts         │   - Journal Entries             │
+│  - Profile Mgmt     │  - Payments         │   - Credit Notes                │
+│  - Contributions    │  - Invoices         │   - Debit Notes                 │
+│  - Communication    │  - Bank Reco        │   - Ledger Mgmt                 │
+├─────────────────────┼─────────────────────┼───────────────────────────────────┤
+│  Madrassa Module    │  Waqf Module        │                                   │
+│  - Students         │  - Property Mgmt    │                                   │
+│  - Teachers         │  - Tenant Mgmt      │                                   │
+│  - Classes          │  - Rent Collection  │                                   │
+│  - Exams            │  - Maintenance      │                                   │
+│  - Attendance       │  - Legal Docs       │                                   │
+├─────────────────────┴─────────────────────┴───────────────────────────────────┤
+│                              Data Layer                                      │
+├───────────────────────────────────────────────────────────────────────────────┤
+│                    MySQL Database (Multi-Tenant)                             │
+│  - Masjid DB1    - Masjid DB2    - Masjid DB3                               │
+└───────────────────────────────────────────────────────────────────────────────┘

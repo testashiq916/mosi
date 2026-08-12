@@ -1,0 +1,112 @@
+masjid-erp/
+├── backend/
+│   └── laravel/
+│       ├── app/
+│       │   ├── Console/
+│       │   ├── Events/
+│       │   ├── Exceptions/
+│       │   ├── Http/
+│       │   │   ├── Controllers/
+│       │   │   │   ├── API/
+│       │   │   │   │   └── V1/
+│       │   │   │   │       ├── Auth/
+│       │   │   │   │       ├── Admin/
+│       │   │   │   │       ├── Member/
+│       │   │   │   │       │   ├── DashboardController.php
+│       │   │   │   │       │   ├── ProfileController.php
+│       │   │   │   │       │   ├── DonationController.php
+│       │   │   │   │       │   └── PaymentController.php
+│       │   │   │   │       ├── Masjid/
+│       │   │   │   │       ├── Madrassa/
+│       │   │   │   │       ├── Waqf/
+│       │   │   │   │       ├── Financial/
+│       │   │   │   │       │   ├── AccountingController.php
+│       │   │   │   │       │   ├── ReceiptController.php
+│       │   │   │   │       │   ├── PaymentController.php
+│       │   │   │   │       │   ├── CreditNoteController.php
+│       │   │   │   │       │   └── DebitNoteController.php
+│       │   │   │   │       └── Reports/
+│       │   │   │   └── Web/
+│       │   │   ├── Middleware/
+│       │   │   ├── Requests/
+│       │   │   └── Resources/
+│       │   ├── Models/
+│       │   │   ├── System/
+│       │   │   ├── Member/
+│       │   │   │   ├── Member.php
+│       │   │   │   ├── MemberType.php
+│       │   │   │   ├── MemberFamily.php
+│       │   │   │   └── MemberDocument.php
+│       │   │   ├── Accounting/
+│       │   │   │   ├── AccountM.php
+│       │   │   │   ├── AccountG.php
+│       │   │   │   ├── AccountGBS.php
+│       │   │   │   ├── Daybook.php
+│       │   │   │   ├── Voucher.php
+│       │   │   │   ├── VoucherDetail.php
+│       │   │   │   ├── Receipt.php
+│       │   │   │   ├── Payment.php
+│       │   │   │   ├── CreditNote.php
+│       │   │   │   ├── DebitNote.php
+│       │   │   │   └── JournalEntry.php
+│       │   │   ├── Masjid/
+│       │   │   ├── Madrassa/
+│       │   │   ├── Waqf/
+│       │   │   └── Donation/
+│       │   ├── Services/
+│       │   │   ├── Accounting/
+│       │   │   │   ├── AccountingService.php
+│       │   │   │   ├── VoucherService.php
+│       │   │   │   ├── ReportService.php
+│       │   │   │   └── ReconciliationService.php
+│       │   │   ├── Member/
+│       │   │   │   ├── MemberService.php
+│       │   │   │   └── DonationService.php
+│       │   │   └── Financial/
+│       │   │       ├── ReceiptService.php
+│       │   │       ├── PaymentService.php
+│       │   │       ├── CreditNoteService.php
+│       │   │       └── DebitNoteService.php
+│       │   ├── Repositories/
+│       │   ├── Helpers/
+│       │   └── Traits/
+│       ├── config/
+│       ├── database/
+│       │   ├── migrations/
+│       │   ├── seeders/
+│       │   └── factories/
+│       ├── public/
+│       ├── resources/
+│       │   └── views/
+│       │       ├── admin/
+│       │       │   ├── dashboard/
+│       │       │   ├── members/
+│       │       │   ├── masjid/
+│       │       │   ├── madrassa/
+│       │       │   ├── waqf/
+│       │       │   ├── financial/
+│       │       │   │   ├── accounting/
+│       │       │   │   ├── receipts/
+│       │       │   │   ├── payments/
+│       │       │   │   ├── credit-notes/
+│       │       │   │   └── debit-notes/
+│       │       │   └── reports/
+│       │       └── member/
+│       │           ├── dashboard.blade.php
+│       │           ├── profile.blade.php
+│       │           ├── donations/
+│       │           ├── receipts/
+│       │           ├── children/
+│       │           └── payments/
+│       ├── routes/
+│       │   ├── api.php
+│       │   ├── web.php
+│       │   ├── member.php
+│       │   └── admin.php
+│       └── tests/
+├── frontend/
+│   ├── web-admin/
+│   └── mobile-app/
+├── docker/
+├── scripts/
+└── docs/

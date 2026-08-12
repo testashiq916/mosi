@@ -1,0 +1,2080 @@
+masjid-erp/
+│
+├── backend/
+│   └── laravel/
+│       ├── app/
+│       │   ├── Console/
+│       │   │   ├── Commands/
+│       │   │   │   ├── Accounting/
+│       │   │   │   │   ├── CloseMonthlyBooks.php
+│       │   │   │   │   ├── GenerateTrialBalance.php
+│       │   │   │   │   ├── ReconcileAccounts.php
+│       │   │   │   │   ├── GenerateAnnualReports.php
+│       │   │   │   │   └── ProcessDepreciation.php
+│       │   │   │   ├── Prayer/
+│       │   │   │   │   ├── FetchPrayerTimes.php
+│       │   │   │   │   ├── UpdatePrayerTimes.php
+│       │   │   │   │   └── GeneratePrayerCalendar.php
+│       │   │   │   ├── Donation/
+│       │   │   │   │   ├── ProcessRecurringDonations.php
+│       │   │   │   │   ├── SendDonationReminders.php
+│       │   │   │   │   └── GenerateDonationReports.php
+│       │   │   │   ├── Madrassa/
+│       │   │   │   │   ├── ProcessExamResults.php
+│       │   │   │   │   ├── GenerateProgressReports.php
+│       │   │   │   │   ├── ProcessFeePayments.php
+│       │   │   │   │   └── PromoteStudents.php
+│       │   │   │   ├── Rental/
+│       │   │   │   │   ├── ProcessRentPayments.php
+│       │   │   │   │   ├── GenerateRentInvoices.php
+│       │   │   │   │   ├── CheckOverdueRentals.php
+│       │   │   │   │   └── SendRentReminders.php
+│       │   │   │   ├── Waqf/
+│       │   │   │   │   ├── ProcessWaqfReports.php
+│       │   │   │   │   ├── UpdatePropertyValues.php
+│       │   │   │   │   └── GenerateWaqfStatements.php
+│       │   │   │   ├── Member/
+│       │   │   │   │   ├── CheckMembershipExpiry.php
+│       │   │   │   │   ├── SendMembershipReminders.php
+│       │   │   │   │   └── GenerateMemberReports.php
+│       │   │   │   ├── Staff/
+│       │   │   │   │   ├── ProcessPayroll.php
+│       │   │   │   │   ├── GenerateSalarySlips.php
+│       │   │   │   │   └── CalculateOvertime.php
+│       │   │   │   ├── Notification/
+│       │   │   │   │   ├── SendScheduledNotifications.php
+│       │   │   │   │   ├── RetryFailedNotifications.php
+│       │   │   │   │   └── CleanupOldNotifications.php
+│       │   │   │   ├── System/
+│       │   │   │   │   ├── BackupDatabase.php
+│       │   │   │   │   ├── ClearCache.php
+│       │   │   │   │   ├── UpdateHijriDate.php
+│       │   │   │   │   └── CheckSystemHealth.php
+│       │   │   │   └── Reports/
+│       │   │   │       ├── GenerateDailyReports.php
+│       │   │   │       ├── GenerateMonthlyReports.php
+│       │   │   │       └── GenerateYearlyReports.php
+│       │   │   └── Kernel.php
+│       │   │
+│       │   ├── Events/
+│       │   │   ├── Accounting/
+│       │   │   │   ├── AccountCreated.php
+│       │   │   │   ├── TransactionCreated.php
+│       │   │   │   ├── VoucherPosted.php
+│       │   │   │   └── FinancialYearClosed.php
+│       │   │   ├── Member/
+│       │   │   │   ├── MemberRegistered.php
+│       │   │   │   ├── MemberUpdated.php
+│       │   │   │   ├── MembershipExpired.php
+│       │   │   │   └── MemberDeactivated.php
+│       │   │   ├── Donation/
+│       │   │   │   ├── DonationReceived.php
+│       │   │   │   ├── DonationVerified.php
+│       │   │   │   ├── RecurringDonationProcessed.php
+│       │   │   │   └── DonationReceiptGenerated.php
+│       │   │   ├── Madrassa/
+│       │   │   │   ├── StudentEnrolled.php
+│       │   │   │   ├── StudentPromoted.php
+│       │   │   │   ├── ExamResultPublished.php
+│       │   │   │   └── FeePaid.php
+│       │   │   ├── Waqf/
+│       │   │   │   ├── PropertyRegistered.php
+│       │   │   │   ├── LeaseCreated.php
+│       │   │   │   ├── RentReceived.php
+│       │   │   │   └── MaintenanceCompleted.php
+│       │   │   ├── Rental/
+│       │   │   │   ├── UtensilRented.php
+│       │   │   │   ├── UtensilReturned.php
+│       │   │   │   ├── RentalOverdue.php
+│       │   │   │   └── BuildingRented.php
+│       │   │   ├── Prayer/
+│       │   │   │   ├── PrayerTimeUpdated.php
+│       │   │   │   └── JamaatTimeChanged.php
+│       │   │   ├── Staff/
+│       │   │   │   ├── StaffHired.php
+│       │   │   │   ├── AttendanceMarked.php
+│       │   │   │   ├── PayrollProcessed.php
+│       │   │   │   └── StaffTerminated.php
+│       │   │   ├── Marriage/
+│       │   │   │   ├── MarriageRegistered.php
+│       │   │   │   ├── MarriageApproved.php
+│       │   │   │   ├── DivorceRegistered.php
+│       │   │   │   └── NOCIssued.php
+│       │   │   ├── Meeting/
+│       │   │   │   ├── MeetingScheduled.php
+│       │   │   │   ├── MeetingHeld.php
+│       │   │   │   └── ActionItemCompleted.php
+│       │   │   ├── Notification/
+│       │   │   │   ├── NotificationSent.php
+│       │   │   │   └── NotificationFailed.php
+│       │   │   └── System/
+│       │   │       ├── SystemInitialized.php
+│       │   │       ├── BackupCreated.php
+│       │   │       └── ErrorLogged.php
+│       │   │
+│       │   ├── Listeners/
+│       │   │   ├── Accounting/
+│       │   │   │   ├── CreateDefaultAccounts.php
+│       │   │   │   └── UpdateGeneralLedger.php
+│       │   │   ├── Donation/
+│       │   │   │   ├── GenerateDonationReceipt.php
+│       │   │   │   ├── SendDonationConfirmation.php
+│       │   │   │   └── UpdateDonorStatistics.php
+│       │   │   ├── Madrassa/
+│       │   │   │   ├── GenerateStudentIDCard.php
+│       │   │   │   ├── SendEnrollmentConfirmation.php
+│       │   │   │   └── UpdateClassRoster.php
+│       │   │   ├── Member/
+│       │   │   │   ├── SendWelcomeEmail.php
+│       │   │   │   ├── CreateMemberWallet.php
+│       │   │   │   └── UpdateMemberDashboard.php
+│       │   │   ├── Staff/
+│       │   │   │   ├── CreateStaffAccount.php
+│       │   │   │   └── UpdateStaffAttendance.php
+│       │   │   ├── Rental/
+│       │   │   │   ├── UpdateUtensilAvailability.php
+│       │   │   │   └── GenerateRentalInvoice.php
+│       │   │   └── System/
+│       │   │       ├── LogActivity.php
+│       │   │       └── SendAlertEmail.php
+│       │   │
+│       │   ├── Exceptions/
+│       │   │   ├── Accounting/
+│       │   │   │   ├── AccountNotFoundException.php
+│       │   │   │   ├── UnbalancedTransactionException.php
+│       │   │   │   ├── VoucherPostingException.php
+│       │   │   │   └── FinancialYearException.php
+│       │   │   ├── Booking/
+│       │   │   │   ├── BookingConflictException.php
+│       │   │   │   ├── UtensilUnavailableException.php
+│       │   │   │   └── RentalPeriodExceededException.php
+│       │   │   ├── Donation/
+│       │   │   │   ├── DonationProcessingException.php
+│       │   │   │   └── InvalidDonationException.php
+│       │   │   ├── Madrassa/
+│       │   │   │   ├── StudentNotFoundException.php
+│       │   │   │   ├── ClassFullException.php
+│       │   │   │   └── ExamAlreadyPublishedException.php
+│       │   │   ├── Member/
+│       │   │   │   ├── MemberNotFoundException.php
+│       │   │   │   ├── MembershipExpiredException.php
+│       │   │   │   └── DuplicateMemberException.php
+│       │   │   ├── Staff/
+│       │   │   │   ├── StaffNotFoundException.php
+│       │   │   │   └── PayrollException.php
+│       │   │   ├── Waqf/
+│       │   │   │   ├── PropertyNotFoundException.php
+│       │   │   │   └── LeaseException.php
+│       │   │   ├── Validation/
+│       │   │   │   ├── ValidationException.php
+│       │   │   │   └── DataValidationException.php
+│       │   │   └── Handler.php
+│       │   │
+│       │   ├── Http/
+│       │   │   ├── Controllers/
+│       │   │   │   ├── API/
+│       │   │   │   │   └── V1/
+│       │   │   │   │       ├── Auth/
+│       │   │   │   │       │   ├── AuthController.php
+│       │   │   │   │       │   ├── PasswordResetController.php
+│       │   │   │   │       │   ├── SocialLoginController.php
+│       │   │   │   │       │   └── TwoFactorAuthController.php
+│       │   │   │   │       ├── Admin/
+│       │   │   │   │       │   ├── AdminController.php
+│       │   │   │   │       │   ├── CompanyController.php
+│       │   │   │   │       │   ├── PlanController.php
+│       │   │   │   │       │   ├── SubscriptionController.php
+│       │   │   │   │       │   ├── UserController.php
+│       │   │   │   │       │   └── SystemController.php
+│       │   │   │   │       ├── Masjid/
+│       │   │   │   │       │   ├── MasjidController.php
+│       │   │   │   │       │   ├── PrayerTimeController.php
+│       │   │   │   │       │   ├── EventController.php
+│       │   │   │   │       │   ├── CommitteeController.php
+│       │   │   │   │       │   └── DepartmentController.php
+│       │   │   │   │       ├── Member/
+│       │   │   │   │       │   ├── MemberController.php
+│       │   │   │   │       │   ├── MemberTypeController.php
+│       │   │   │   │       │   ├── MemberDocumentController.php
+│       │   │   │   │       │   └── MemberFamilyController.php
+│       │   │   │   │       ├── Mahalla/
+│       │   │   │   │       │   ├── MahallaController.php
+│       │   │   │   │       │   ├── ResidentController.php
+│       │   │   │   │       │   ├── ResidentTypeController.php
+│       │   │   │   │       │   └── ResidentDependentController.php
+│       │   │   │   │       ├── Marriage/
+│       │   │   │   │       │   ├── MarriageController.php
+│       │   │   │   │       │   ├── DivorceController.php
+│       │   │   │   │       │   └── NOCController.php
+│       │   │   │   │       ├── Madrassa/
+│       │   │   │   │       │   ├── StudentController.php
+│       │   │   │   │       │   ├── TeacherController.php
+│       │   │   │   │       │   ├── ClassController.php
+│       │   │   │   │       │   ├── SubjectController.php
+│       │   │   │   │       │   ├── ExamController.php
+│       │   │   │   │       │   ├── ExamResultController.php
+│       │   │   │   │       │   ├── AttendanceController.php
+│       │   │   │   │       │   ├── FeeController.php
+│       │   │   │   │       │   └── AcademicYearController.php
+│       │   │   │   │       ├── Waqf/
+│       │   │   │   │       │   ├── WaqfPropertyController.php
+│       │   │   │   │       │   ├── WaqfTenantController.php
+│       │   │   │   │       │   ├── WaqfLeaseController.php
+│       │   │   │   │       │   ├── WaqfRentController.php
+│       │   │   │   │       │   ├── WaqfMaintenanceController.php
+│       │   │   │   │       │   └── WaqfDocumentController.php
+│       │   │   │   │       ├── Rental/
+│       │   │   │   │       │   ├── UtensilController.php
+│       │   │   │   │       │   ├── UtensilCategoryController.php
+│       │   │   │   │       │   ├── RentalController.php
+│       │   │   │   │       │   ├── BuildingPropertyController.php
+│       │   │   │   │       │   └── RentalAgreementController.php
+│       │   │   │   │       ├── Financial/
+│       │   │   │   │       │   ├── Accounting/
+│       │   │   │   │       │   │   ├── AccountController.php
+│       │   │   │   │       │   │   ├── VoucherController.php
+│       │   │   │   │       │   │   ├── LedgerController.php
+│       │   │   │   │       │   │   └── ReportController.php
+│       │   │   │   │       │   ├── Donation/
+│       │   │   │   │       │   │   ├── DonationController.php
+│       │   │   │   │       │   │   ├── DonationCategoryController.php
+│       │   │   │   │       │   │   └── DonorController.php
+│       │   │   │   │       │   ├── Receipt/
+│       │   │   │   │       │   │   ├── ReceiptController.php
+│       │   │   │   │       │   │   └── ReceiptTemplateController.php
+│       │   │   │   │       │   ├── Payment/
+│       │   │   │   │       │   │   ├── PaymentController.php
+│       │   │   │   │       │   │   └── PaymentMethodController.php
+│       │   │   │   │       │   ├── CreditNote/
+│       │   │   │   │       │   │   └── CreditNoteController.php
+│       │   │   │   │       │   ├── DebitNote/
+│       │   │   │   │       │   │   └── DebitNoteController.php
+│       │   │   │   │       │   ├── Bank/
+│       │   │   │   │       │   │   ├── BankReconciliationController.php
+│       │   │   │   │       │   │   └── BankAccountController.php
+│       │   │   │   │       │   └── Tax/
+│       │   │   │   │       │       ├── TaxController.php
+│       │   │   │   │       │       └── GSTController.php
+│       │   │   │   │       ├── Staff/
+│       │   │   │   │       │   ├── StaffController.php
+│       │   │   │   │       │   ├── StaffRoleController.php
+│       │   │   │   │       │   ├── StaffPayrollController.php
+│       │   │   │   │       │   └── StaffAttendanceController.php
+│       │   │   │   │       ├── Reports/
+│       │   │   │   │       │   ├── ReportController.php
+│       │   │   │   │       │   ├── AnalyticsController.php
+│       │   │   │   │       │   ├── DashboardController.php
+│       │   │   │   │       │   ├── FinancialReportController.php
+│       │   │   │   │       │   ├── DonationReportController.php
+│       │   │   │   │       │   ├── MadrassaReportController.php
+│       │   │   │   │       │   ├── WaqfReportController.php
+│       │   │   │   │       │   └── StaffReportController.php
+│       │   │   │   │       ├── Notification/
+│       │   │   │   │       │   ├── NotificationController.php
+│       │   │   │   │       │   ├── NotificationTypeController.php
+│       │   │   │   │       │   ├── NotificationTemplateController.php
+│       │   │   │   │       │   └── PreferenceController.php
+│       │   │   │   │       ├── Meeting/
+│       │   │   │   │       │   ├── MeetingController.php
+│       │   │   │   │       │   └── MeetingActionController.php
+│       │   │   │   │       ├── Asset/
+│       │   │   │   │       │   ├── AssetController.php
+│       │   │   │   │       │   ├── AssetCategoryController.php
+│       │   │   │   │       │   └── AssetMaintenanceController.php
+│       │   │   │   │       ├── System/
+│       │   │   │   │       │   ├── SettingController.php
+│       │   │   │   │       │   ├── BackupController.php
+│       │   │   │   │       │   ├── AuditLogController.php
+│       │   │   │   │       │   └── MaintenanceController.php
+│       │   │   │   │       └── Integration/
+│       │   │   │   │           ├── PrayerAPI/
+│       │   │   │   │           │   └── PrayerTimeAPIController.php
+│       │   │   │   │           ├── PaymentGateway/
+│       │   │   │   │           │   ├── PaymentGatewayController.php
+│       │   │   │   │           │   └── WebhookController.php
+│       │   │   │   │           └── SMS/
+│       │   │   │   │               └── SMSController.php
+│       │   │   │   ├── Admin/
+│       │   │   │   │   ├── DashboardController.php
+│       │   │   │   │   ├── MasjidController.php
+│       │   │   │   │   ├── MemberController.php
+│       │   │   │   │   ├── MadrassaController.php
+│       │   │   │   │   ├── WaqfController.php
+│       │   │   │   │   ├── FinancialController.php
+│       │   │   │   │   ├── ReportController.php
+│       │   │   │   │   ├── StaffController.php
+│       │   │   │   │   ├── SettingController.php
+│       │   │   │   │   └── SystemController.php
+│       │   │   │   ├── MemberPortal/
+│       │   │   │   │   ├── DashboardController.php
+│       │   │   │   │   ├── ProfileController.php
+│       │   │   │   │   ├── DonationController.php
+│       │   │   │   │   ├── ReceiptController.php
+│       │   │   │   │   ├── ChildController.php
+│       │   │   │   │   ├── PaymentController.php
+│       │   │   │   │   ├── EventController.php
+│       │   │   │   │   └── SettingController.php
+│       │   │   │   └── Web/
+│       │   │   │       ├── HomeController.php
+│       │   │   │       ├── PrayerTimeController.php
+│       │   │   │       ├── ContactController.php
+│       │   │   │       └── PageController.php
+│       │   │   │
+│       │   │   ├── Middleware/
+│       │   │   │   ├── Authenticate.php
+│       │   │   │   ├── CompanyScope.php
+│       │   │   │   ├── SubscriptionCheck.php
+│       │   │   │   ├── RolePermission.php
+│       │   │   │   ├── MemberAccess.php
+│       │   │   │   ├── StaffAccess.php
+│       │   │   │   ├── AdminAccess.php
+│       │   │   │   ├── CORS.php
+│       │   │   │   ├── RateLimiter.php
+│       │   │   │   ├── LogRequest.php
+│       │   │   │   ├── TrustProxies.php
+│       │   │   │   ├── TwoFactorAuth.php
+│       │   │   │   ├── VerifiedUser.php
+│       │   │   │   └── ValidateHijriDate.php
+│       │   │   │
+│       │   │   ├── Requests/
+│       │   │   │   ├── API/
+│       │   │   │   │   └── V1/
+│       │   │   │   │       ├── Auth/
+│       │   │   │   │       │   ├── LoginRequest.php
+│       │   │   │   │       │   ├── RegisterRequest.php
+│       │   │   │   │       │   └── PasswordResetRequest.php
+│       │   │   │   │       ├── Masjid/
+│       │   │   │   │       │   ├── MasjidRequest.php
+│       │   │   │   │       │   └── PrayerTimeRequest.php
+│       │   │   │   │       ├── Member/
+│       │   │   │   │       │   ├── MemberRequest.php
+│       │   │   │   │       │   └── MemberDocumentRequest.php
+│       │   │   │   │       ├── Mahalla/
+│       │   │   │   │       │   └── ResidentRequest.php
+│       │   │   │   │       ├── Marriage/
+│       │   │   │   │       │   ├── MarriageRequest.php
+│       │   │   │   │       │   └── NOCRequest.php
+│       │   │   │   │       ├── Madrassa/
+│       │   │   │   │       │   ├── StudentRequest.php
+│       │   │   │   │       │   ├── TeacherRequest.php
+│       │   │   │   │       │   ├── ClassRequest.php
+│       │   │   │   │       │   ├── ExamRequest.php
+│       │   │   │   │       │   └── FeeRequest.php
+│       │   │   │   │       ├── Waqf/
+│       │   │   │   │       │   ├── PropertyRequest.php
+│       │   │   │   │       │   ├── LeaseRequest.php
+│       │   │   │   │       │   └── RentRequest.php
+│       │   │   │   │       ├── Rental/
+│       │   │   │   │       │   ├── UtensilRequest.php
+│       │   │   │   │       │   ├── RentalRequest.php
+│       │   │   │   │       │   └── BuildingRequest.php
+│       │   │   │   │       ├── Financial/
+│       │   │   │   │       │   ├── Accounting/
+│       │   │   │   │       │   │   ├── AccountRequest.php
+│       │   │   │   │       │   │   └── VoucherRequest.php
+│       │   │   │   │       │   ├── Donation/
+│       │   │   │   │       │   │   └── DonationRequest.php
+│       │   │   │   │       │   ├── Receipt/
+│       │   │   │   │       │   │   └── ReceiptRequest.php
+│       │   │   │   │       │   └── Payment/
+│       │   │   │   │       │       └── PaymentRequest.php
+│       │   │   │   │       ├── Staff/
+│       │   │   │   │       │   ├── StaffRequest.php
+│       │   │   │   │       │   └── PayrollRequest.php
+│       │   │   │   │       ├── Reports/
+│       │   │   │   │       │   └── ReportRequest.php
+│       │   │   │   │       └── Meeting/
+│       │   │   │   │           └── MeetingRequest.php
+│       │   │   │   ├── Admin/
+│       │   │   │   │   ├── MasjidRequest.php
+│       │   │   │   │   ├── MemberRequest.php
+│       │   │   │   │   └── SettingRequest.php
+│       │   │   │   └── MemberPortal/
+│       │   │   │       ├── ProfileRequest.php
+│       │   │   │       └── DonationRequest.php
+│       │   │   │
+│       │   │   └── Resources/
+│       │   │       ├── API/
+│       │   │       │   └── V1/
+│       │   │       │       ├── Masjid/
+│       │   │       │       │   ├── MasjidResource.php
+│       │   │       │       │   ├── MasjidCollection.php
+│       │   │       │       │   └── PrayerTimeResource.php
+│       │   │       │       ├── Member/
+│       │   │       │       │   ├── MemberResource.php
+│       │   │       │       │   ├── MemberCollection.php
+│       │   │       │       │   └── MemberFamilyResource.php
+│       │   │       │       ├── Mahalla/
+│       │   │       │       │   ├── ResidentResource.php
+│       │   │       │       │   └── ResidentCollection.php
+│       │   │       │       ├── Marriage/
+│       │   │       │       │   ├── MarriageResource.php
+│       │   │       │       │   └── NOCResource.php
+│       │   │       │       ├── Madrassa/
+│       │   │       │       │   ├── StudentResource.php
+│       │   │       │       │   ├── TeacherResource.php
+│       │   │       │       │   ├── ClassResource.php
+│       │   │       │       │   ├── ExamResource.php
+│       │   │       │       │   └── FeeResource.php
+│       │   │       │       ├── Waqf/
+│       │   │       │       │   ├── PropertyResource.php
+│       │   │       │       │   ├── LeaseResource.php
+│       │   │       │       │   └── RentResource.php
+│       │   │       │       ├── Rental/
+│       │   │       │       │   ├── UtensilResource.php
+│       │   │       │       │   ├── RentalResource.php
+│       │   │       │       │   └── BuildingResource.php
+│       │   │       │       ├── Financial/
+│       │   │       │       │   ├── Accounting/
+│       │   │       │       │   │   ├── AccountResource.php
+│       │   │       │       │   │   ├── VoucherResource.php
+│       │   │       │       │   │   └── LedgerResource.php
+│       │   │       │       │   ├── Donation/
+│       │   │       │       │   │   ├── DonationResource.php
+│       │   │       │       │   │   └── DonorResource.php
+│       │   │       │       │   ├── Receipt/
+│       │   │       │       │   │   └── ReceiptResource.php
+│       │   │       │       │   └── Payment/
+│       │   │       │       │       └── PaymentResource.php
+│       │   │       │       ├── Staff/
+│       │   │       │       │   ├── StaffResource.php
+│       │   │       │       │   └── PayrollResource.php
+│       │   │       │       ├── Reports/
+│       │   │       │       │   ├── ReportResource.php
+│       │   │       │       │   └── DashboardResource.php
+│       │   │       │       ├── Notification/
+│       │   │       │       │   ├── NotificationResource.php
+│       │   │       │       │   └── NotificationTypeResource.php
+│       │   │       │       ├── Meeting/
+│       │   │       │       │   ├── MeetingResource.php
+│       │   │       │       │   └── MeetingActionResource.php
+│       │   │       │       ├── Asset/
+│       │   │       │       │   ├── AssetResource.php
+│       │   │       │       │   └── AssetMaintenanceResource.php
+│       │   │       │       └── System/
+│       │   │       │           ├── UserResource.php
+│       │   │       │           ├── CompanyResource.php
+│       │   │       │           └── AuditLogResource.php
+│       │   │       └── Admin/
+│       │   │           └── ...
+│       │   │
+│       │   ├── Jobs/
+│       │   │   ├── Accounting/
+│       │   │   │   ├── PostVoucher.php
+│       │   │   │   ├── GenerateLedger.php
+│       │   │   │   └── CloseFinancialYear.php
+│       │   │   ├── Donation/
+│       │   │   │   ├── ProcessRecurringDonation.php
+│       │   │   │   ├── GenerateDonationReceipt.php
+│       │   │   │   └── SendDonationReceipt.php
+│       │   │   ├── Prayer/
+│       │   │   │   ├── FetchPrayerTimes.php
+│       │   │   │   └── UpdatePrayerTimes.php
+│       │   │   ├── Madrassa/
+│       │   │   │   ├── ProcessExamResults.php
+│       │   │   │   ├── GenerateReportCards.php
+│       │   │   │   └── SendProgressReports.php
+│       │   │   ├── Rental/
+│       │   │   │   ├── ProcessRentPayment.php
+│       │   │   │   ├── GenerateRentInvoice.php
+│       │   │   │   └── SendRentReminder.php
+│       │   │   ├── Notification/
+│       │   │   │   ├── SendEmailNotification.php
+│       │   │   │   ├── SendSMSNotification.php
+│       │   │   │   ├── SendPushNotification.php
+│       │   │   │   └── SendWhatsAppNotification.php
+│       │   │   ├── Staff/
+│       │   │   │   ├── ProcessPayroll.php
+│       │   │   │   ├── GenerateSalarySlip.php
+│       │   │   │   └── SendSalaryNotification.php
+│       │   │   ├── System/
+│       │   │   │   ├── GenerateMonthlyReport.php
+│       │   │   │   ├── BackupDatabase.php
+│       │   │   │   └── UpdateHijriDate.php
+│       │   │   └── Report/
+│       │   │       ├── GenerateFinancialReport.php
+│       │   │       ├── GenerateDonationReport.php
+│       │   │       └── GenerateWaqfReport.php
+│       │   │
+│       │   ├── Mail/
+│       │   │   ├── Member/
+│       │   │   │   ├── WelcomeEmail.php
+│       │   │   │   ├── MembershipRenewal.php
+│       │   │   │   └── MembershipExpiry.php
+│       │   │   ├── Donation/
+│       │   │   │   ├── DonationConfirmation.php
+│       │   │   │   ├── DonationReceipt.php
+│       │   │   │   └── RecurringDonationReminder.php
+│       │   │   ├── Madrassa/
+│       │   │   │   ├── StudentEnrollment.php
+│       │   │   │   ├── ExamResult.php
+│       │   │   │   ├── ProgressReport.php
+│       │   │   │   └── FeeReminder.php
+│       │   │   ├── Rental/
+│       │   │   │   ├── RentalConfirmation.php
+│       │   │   │   ├── RentInvoice.php
+│       │   │   │   └── RentReminder.php
+│       │   │   ├── Staff/
+│       │   │   │   ├── PayrollSlip.php
+│       │   │   │   └── AttendanceSummary.php
+│       │   │   ├── Event/
+│       │   │   │   ├── EventRegistration.php
+│       │   │   │   ├── EventReminder.php
+│       │   │   │   └── EventFeedback.php
+│       │   │   └── System/
+│       │   │       ├── PasswordReset.php
+│       │   │       ├── SystemAlert.php
+│       │   │       └── SubscriptionExpiry.php
+│       │   │
+│       │   ├── Models/
+│       │   │   ├── Accounting/
+│       │   │   │   ├── AccountGBS.php
+│       │   │   │   ├── AccountG.php
+│       │   │   │   ├── AccountM.php
+│       │   │   │   ├── Daybook.php
+│       │   │   │   ├── Voucher.php
+│       │   │   │   ├── VoucherDetail.php
+│       │   │   │   ├── GeneralLedger.php
+│       │   │   │   ├── TrialBalance.php
+│       │   │   │   ├── ProfitLossStatement.php
+│       │   │   │   ├── BalanceSheet.php
+│       │   │   │   ├── Receipt.php
+│       │   │   │   ├── Payment.php
+│       │   │   │   ├── CreditNote.php
+│       │   │   │   ├── DebitNote.php
+│       │   │   │   ├── JournalEntry.php
+│       │   │   │   ├── BankReconciliation.php
+│       │   │   │   ├── BankReconciliationItem.php
+│       │   │   │   └── FinancialStatement.php
+│       │   │   ├── Masjid/
+│       │   │   │   ├── Masjid.php
+│       │   │   │   ├── MasjidImage.php
+│       │   │   │   ├── PrayerTimeConfig.php
+│       │   │   │   ├── PrayerTime.php
+│       │   │   │   ├── MasjidEvent.php
+│       │   │   │   ├── EventRegistration.php
+│       │   │   │   ├── Committee.php
+│       │   │   │   └── CommitteeMember.php
+│       │   │   ├── Member/
+│       │   │   │   ├── Member.php
+│       │   │   │   ├── MemberType.php
+│       │   │   │   ├── MemberFamily.php
+│       │   │   │   ├── MemberDocument.php
+│       │   │   │   └── MemberContribution.php
+│       │   │   ├── Mahalla/
+│       │   │   │   ├── ResidentType.php
+│       │   │   │   ├── MahallaResident.php
+│       │   │   │   └── ResidentDependent.php
+│       │   │   ├── Marriage/
+│       │   │   │   ├── MarriageRegistration.php
+│       │   │   │   ├── MarriageNOCRequest.php
+│       │   │   │   └── DivorceRegistration.php
+│       │   │   ├── Madrassa/
+│       │   │   │   ├── AcademicYear.php
+│       │   │   │   ├── MadrassaClass.php
+│       │   │   │   ├── Subject.php
+│       │   │   │   ├── ClassSubject.php
+│       │   │   │   ├── Student.php
+│       │   │   │   ├── StudentDocument.php
+│       │   │   │   ├── StudentAttendance.php
+│       │   │   │   ├── Exam.php
+│       │   │   │   ├── ExamResult.php
+│       │   │   │   ├── FeeStructure.php
+│       │   │   │   ├── FeeTransaction.php
+│       │   │   │   ├── Teacher.php
+│       │   │   │   ├── TeacherAttendance.php
+│       │   │   │   └── ClassSchedule.php
+│       │   │   ├── Waqf/
+│       │   │   │   ├── WaqfProperty.php
+│       │   │   │   ├── WaqfPropertyImage.php
+│       │   │   │   ├── WaqfTenant.php
+│       │   │   │   ├── WaqfLease.php
+│       │   │   │   ├── WaqfRentPayment.php
+│       │   │   │   ├── WaqfMaintenance.php
+│       │   │   │   ├── WaqfLegalDocument.php
+│       │   │   │   └── WaqfFinancialReport.php
+│       │   │   ├── Rental/
+│       │   │   │   ├── UtensilCategory.php
+│       │   │   │   ├── Utensil.php
+│       │   │   │   ├── UtensilRental.php
+│       │   │   │   ├── RentalItem.php
+│       │   │   │   ├── RentalProperty.php
+│       │   │   │   └── RentalAgreement.php
+│       │   │   ├── Donation/
+│       │   │   │   ├── Donor.php
+│       │   │   │   ├── DonationCategory.php
+│       │   │   │   └── Donation.php
+│       │   │   ├── Staff/
+│       │   │   │   ├── StaffRole.php
+│       │   │   │   ├── Staff.php
+│       │   │   │   ├── StaffPayroll.php
+│       │   │   │   └── StaffAttendance.php
+│       │   │   ├── Asset/
+│       │   │   │   ├── AssetCategory.php
+│       │   │   │   ├── FixedAsset.php
+│       │   │   │   └── AssetMaintenance.php
+│       │   │   ├── Meeting/
+│       │   │   │   ├── Meeting.php
+│       │   │   │   └── MeetingAction.php
+│       │   │   ├── Notification/
+│       │   │   │   ├── NotificationType.php
+│       │   │   │   ├── NotificationQueue.php
+│       │   │   │   └── NotificationTemplate.php
+│       │   │   ├── Report/
+│       │   │   │   ├── BookingStatistic.php
+│       │   │   │   ├── SystemAuditLog.php
+│       │   │   │   └── UserActivityLog.php
+│       │   │   ├── System/
+│       │   │   │   ├── Company.php
+│       │   │   │   ├── User.php
+│       │   │   │   ├── Role.php
+│       │   │   │   ├── Permission.php
+│       │   │   │   ├── RolePermission.php
+│       │   │   │   ├── Plan.php
+│       │   │   │   └── Subscription.php
+│       │   │   └── Settings/
+│       │   │       ├── Setting.php
+│       │   │       └── Preference.php
+│       │   │
+│       │   ├── Observers/
+│       │   │   ├── Accounting/
+│       │   │   │   ├── AccountObserver.php
+│       │   │   │   └── VoucherObserver.php
+│       │   │   ├── Member/
+│       │   │   │   ├── MemberObserver.php
+│       │   │   │   └── MemberDocumentObserver.php
+│       │   │   ├── Donation/
+│       │   │   │   ├── DonationObserver.php
+│       │   │   │   └── DonorObserver.php
+│       │   │   ├── Madrassa/
+│       │   │   │   ├── StudentObserver.php
+│       │   │   │   └── ExamObserver.php
+│       │   │   ├── Staff/
+│       │   │   │   └── StaffObserver.php
+│       │   │   ├── Waqf/
+│       │   │   │   ├── PropertyObserver.php
+│       │   │   │   └── LeaseObserver.php
+│       │   │   ├── System/
+│       │   │   │   ├── UserObserver.php
+│       │   │   │   └── CompanyObserver.php
+│       │   │   └── Rental/
+│       │   │       ├── UtensilObserver.php
+│       │   │       └── RentalObserver.php
+│       │   │
+│       │   ├── Policies/
+│       │   │   ├── Accounting/
+│       │   │   │   ├── AccountPolicy.php
+│       │   │   │   └── VoucherPolicy.php
+│       │   │   ├── Member/
+│       │   │   │   ├── MemberPolicy.php
+│       │   │   │   └── MemberDocumentPolicy.php
+│       │   │   ├── Donation/
+│       │   │   │   └── DonationPolicy.php
+│       │   │   ├── Madrassa/
+│       │   │   │   ├── StudentPolicy.php
+│       │   │   │   └── ExamPolicy.php
+│       │   │   ├── Staff/
+│       │   │   │   └── StaffPolicy.php
+│       │   │   ├── Waqf/
+│       │   │   │   ├── PropertyPolicy.php
+│       │   │   │   └── LeasePolicy.php
+│       │   │   ├── Report/
+│       │   │   │   └── ReportPolicy.php
+│       │   │   ├── System/
+│       │   │   │   ├── UserPolicy.php
+│       │   │   │   └── CompanyPolicy.php
+│       │   │   └── Rental/
+│       │   │       ├── UtensilPolicy.php
+│       │   │       └── RentalPolicy.php
+│       │   │
+│       │   ├── Providers/
+│       │   │   ├── AppServiceProvider.php
+│       │   │   ├── AuthServiceProvider.php
+│       │   │   ├── EventServiceProvider.php
+│       │   │   ├── RouteServiceProvider.php
+│       │   │   ├── AccountingServiceProvider.php
+│       │   │   ├── PaymentServiceProvider.php
+│       │   │   ├── NotificationServiceProvider.php
+│       │   │   ├── PrayerServiceProvider.php
+│       │   │   ├── RepositoryServiceProvider.php
+│       │   │   └── BladeServiceProvider.php
+│       │   │
+│       │   ├── Repositories/
+│       │   │   ├── Accounting/
+│       │   │   │   ├── AccountRepository.php
+│       │   │   │   ├── VoucherRepository.php
+│       │   │   │   ├── LedgerRepository.php
+│       │   │   │   └── ReportRepository.php
+│       │   │   ├── Member/
+│       │   │   │   ├── MemberRepository.php
+│       │   │   │   └── MemberDocumentRepository.php
+│       │   │   ├── Mahalla/
+│       │   │   │   ├── ResidentRepository.php
+│       │   │   │   └── ResidentDependentRepository.php
+│       │   │   ├── Marriage/
+│       │   │   │   ├── MarriageRepository.php
+│       │   │   │   └── NOCRepository.php
+│       │   │   ├── Madrassa/
+│       │   │   │   ├── StudentRepository.php
+│       │   │   │   ├── TeacherRepository.php
+│       │   │   │   ├── ClassRepository.php
+│       │   │   │   ├── ExamRepository.php
+│       │   │   │   └── FeeRepository.php
+│       │   │   ├── Waqf/
+│       │   │   │   ├── PropertyRepository.php
+│       │   │   │   ├── LeaseRepository.php
+│       │   │   │   └── RentRepository.php
+│       │   │   ├── Rental/
+│       │   │   │   ├── UtensilRepository.php
+│       │   │   │   ├── RentalRepository.php
+│       │   │   │   └── BuildingRepository.php
+│       │   │   ├── Donation/
+│       │   │   │   ├── DonationRepository.php
+│       │   │   │   └── DonorRepository.php
+│       │   │   ├── Staff/
+│       │   │   │   ├── StaffRepository.php
+│       │   │   │   └── PayrollRepository.php
+│       │   │   ├── Report/
+│       │   │   │   ├── ReportRepository.php
+│       │   │   │   └── AnalyticsRepository.php
+│       │   │   ├── Notification/
+│       │   │   │   ├── NotificationRepository.php
+│       │   │   │   └── TemplateRepository.php
+│       │   │   ├── System/
+│       │   │   │   ├── CompanyRepository.php
+│       │   │   │   ├── UserRepository.php
+│       │   │   │   └── SubscriptionRepository.php
+│       │   │   ├── Meeting/
+│       │   │   │   ├── MeetingRepository.php
+│       │   │   │   └── MeetingActionRepository.php
+│       │   │   └── Asset/
+│       │   │       ├── AssetRepository.php
+│       │   │       └── AssetMaintenanceRepository.php
+│       │   │
+│       │   ├── Services/
+│       │   │   ├── Accounting/
+│       │   │   │   ├── AccountingService.php
+│       │   │   │   ├── VoucherService.php
+│       │   │   │   ├── LedgerService.php
+│       │   │   │   ├── ReportService.php
+│       │   │   │   ├── TaxService.php
+│       │   │   │   ├── GSTService.php
+│       │   │   │   ├── ReconciliationService.php
+│       │   │   │   └── FinancialStatementService.php
+│       │   │   ├── Member/
+│       │   │   │   ├── MemberService.php
+│       │   │   │   ├── MemberRegistrationService.php
+│       │   │   │   └── MembershipService.php
+│       │   │   ├── Mahalla/
+│       │   │   │   ├── ResidentService.php
+│       │   │   │   └── ResidentDependentService.php
+│       │   │   ├── Marriage/
+│       │   │   │   ├── MarriageService.php
+│       │   │   │   ├── DivorceService.php
+│       │   │   │   └── NOCService.php
+│       │   │   ├── Madrassa/
+│       │   │   │   ├── StudentService.php
+│       │   │   │   ├── TeacherService.php
+│       │   │   │   ├── ClassService.php
+│       │   │   │   ├── ExamService.php
+│       │   │   │   ├── AttendanceService.php
+│       │   │   │   └── FeeService.php
+│       │   │   ├── Waqf/
+│       │   │   │   ├── PropertyService.php
+│       │   │   │   ├── LeaseService.php
+│       │   │   │   ├── RentService.php
+│       │   │   │   └── MaintenanceService.php
+│       │   │   ├── Rental/
+│       │   │   │   ├── UtensilService.php
+│       │   │   │   ├── RentalService.php
+│       │   │   │   ├── BuildingService.php
+│       │   │   │   └── AgreementService.php
+│       │   │   ├── Donation/
+│       │   │   │   ├── DonationService.php
+│       │   │   │   ├── DonorService.php
+│       │   │   │   ├── ReceiptService.php
+│       │   │   │   └── RecurringDonationService.php
+│       │   │   ├── Staff/
+│       │   │   │   ├── StaffService.php
+│       │   │   │   ├── PayrollService.php
+│       │   │   │   └── AttendanceService.php
+│       │   │   ├── Prayer/
+│       │   │   │   ├── PrayerTimeService.php
+│       │   │   │   ├── PrayerCalculationService.php
+│       │   │   │   └── JamaatTimeService.php
+│       │   │   ├── Notification/
+│       │   │   │   ├── NotificationService.php
+│       │   │   │   ├── EmailService.php
+│       │   │   │   ├── SMSService.php
+│       │   │   │   ├── PushNotificationService.php
+│       │   │   │   └── WhatsAppService.php
+│       │   │   ├── Report/
+│       │   │   │   ├── ReportService.php
+│       │   │   │   ├── AnalyticsService.php
+│       │   │   │   ├── DashboardService.php
+│       │   │   │   └── ExportService.php
+│       │   │   ├── Meeting/
+│       │   │   │   ├── MeetingService.php
+│       │   │   │   └── MeetingActionService.php
+│       │   │   ├── Asset/
+│       │   │   │   ├── AssetService.php
+│       │   │   │   └── MaintenanceService.php
+│       │   │   ├── System/
+│       │   │   │   ├── CompanyService.php
+│       │   │   │   ├── SubscriptionService.php
+│       │   │   │   ├── RolePermissionService.php
+│       │   │   │   ├── ImportExportService.php
+│       │   │   │   ├── AuditService.php
+│       │   │   │   ├── BackupService.php
+│       │   │   │   └── HijriDateService.php
+│       │   │   ├── Integration/
+│       │   │   │   ├── PaymentGateway/
+│       │   │   │   │   ├── StripeService.php
+│       │   │   │   │   ├── RazorpayService.php
+│       │   │   │   │   └── PayPalService.php
+│       │   │   │   ├── PrayerAPI/
+│       │   │   │   │   ├── AladhanService.php
+│       │   │   │   │   └── IslamicFinderService.php
+│       │   │   │   ├── Communication/
+│       │   │   │   │   ├── TwilioService.php
+│       │   │   │   │   ├── SendGridService.php
+│       │   │   │   │   └── FirebaseService.php
+│       │   │   │   └── Storage/
+│       │   │   │       ├── AwsS3Service.php
+│       │   │   │       └── LocalStorageService.php
+│       │   │   └── Event/
+│       │   │       ├── EventService.php
+│       │   │       └── RegistrationService.php
+│       │   │
+│       │   ├── Helpers/
+│       │   │   ├── AccountingHelper.php
+│       │   │   ├── DateHelper.php
+│       │   │   ├── NumberHelper.php
+│       │   │   ├── FileHelper.php
+│       │   │   ├── ValidationHelper.php
+│       │   │   ├── ResponseHelper.php
+│       │   │   ├── ReportHelper.php
+│       │   │   ├── PrayerHelper.php
+│       │   │   ├── IslamicHelper.php
+│       │   │   ├── PDFHelper.php
+│       │   │   └── QRCodeHelper.php
+│       │   │
+│       │   └── Traits/
+│       │       ├── CompanyScoped.php
+│       │       ├── AuditLogs.php
+│       │       ├── SoftDeletes.php
+│       │       ├── UuidGenerator.php
+│       │       ├── ApiResponse.php
+│       │       ├── Searchable.php
+│       │       ├── DateFormat.php
+│       │       ├── Filterable.php
+│       │       └── Sortable.php
+│       │
+│       ├── bootstrap/
+│       │   ├── app.php
+│       │   ├── cache/
+│       │   └── providers.php
+│       │
+│       ├── config/
+│       │   ├── app.php
+│       │   ├── auth.php
+│       │   ├── cache.php
+│       │   ├── cors.php
+│       │   ├── database.php
+│       │   ├── filesystems.php
+│       │   ├── jwt.php
+│       │   ├── logging.php
+│       │   ├── mail.php
+│       │   ├── queue.php
+│       │   ├── sanctum.php
+│       │   ├── services.php
+│       │   ├── session.php
+│       │   ├── view.php
+│       │   ├── accounting.php
+│       │   ├── booking.php
+│       │   ├── payment.php
+│       │   ├── notification.php
+│       │   ├── subscription.php
+│       │   ├── tax.php
+│       │   ├── prayer.php
+│       │   ├── madrassa.php
+│       │   ├── waqf.php
+│       │   ├── constants.php
+│       │   └── hijri.php
+│       │
+│       ├── database/
+│       │   ├── factories/
+│       │   │   ├── Accounting/
+│       │   │   │   ├── AccountMFactory.php
+│       │   │   │   ├── DaybookFactory.php
+│       │   │   │   └── VoucherFactory.php
+│       │   │   ├── Member/
+│       │   │   │   ├── MemberFactory.php
+│       │   │   │   ├── MemberTypeFactory.php
+│       │   │   │   └── MemberFamilyFactory.php
+│       │   │   ├── Mahalla/
+│       │   │   │   ├── ResidentFactory.php
+│       │   │   │   └── ResidentDependentFactory.php
+│       │   │   ├── Marriage/
+│       │   │   │   ├── MarriageFactory.php
+│       │   │   │   └── NOCFactory.php
+│       │   │   ├── Madrassa/
+│       │   │   │   ├── StudentFactory.php
+│       │   │   │   ├── TeacherFactory.php
+│       │   │   │   ├── ClassFactory.php
+│       │   │   │   ├── ExamFactory.php
+│       │   │   │   └── FeeFactory.php
+│       │   │   ├── Waqf/
+│       │   │   │   ├── PropertyFactory.php
+│       │   │   │   ├── LeaseFactory.php
+│       │   │   │   └── RentFactory.php
+│       │   │   ├── Rental/
+│       │   │   │   ├── UtensilFactory.php
+│       │   │   │   ├── RentalFactory.php
+│       │   │   │   └── BuildingFactory.php
+│       │   │   ├── Donation/
+│       │   │   │   ├── DonationFactory.php
+│       │   │   │   └── DonorFactory.php
+│       │   │   ├── Staff/
+│       │   │   │   ├── StaffFactory.php
+│       │   │   │   └── PayrollFactory.php
+│       │   │   ├── System/
+│       │   │   │   ├── CompanyFactory.php
+│       │   │   │   ├── UserFactory.php
+│       │   │   │   └── PlanFactory.php
+│       │   │   └── Notification/
+│       │   │       └── NotificationFactory.php
+│       │   ├── migrations/
+│       │   │   ├── 2014_10_12_000000_create_users_table.php
+│       │   │   ├── 2014_10_12_100000_create_password_resets_table.php
+│       │   │   ├── 2019_08_19_000000_create_failed_jobs_table.php
+│       │   │   ├── 2019_12_14_000001_create_personal_access_tokens_table.php
+│       │   │   ├── 2024_01_01_000000_create_companies_table.php
+│       │   │   ├── 2024_01_01_000001_create_plans_table.php
+│       │   │   ├── 2024_01_01_000002_create_subscriptions_table.php
+│       │   │   ├── 2024_01_01_000003_create_roles_permissions_tables.php
+│       │   │   ├── 2024_01_01_000004_create_accounting_tables.php
+│       │   │   ├── 2024_01_01_000005_create_account_masters_table.php
+│       │   │   ├── 2024_01_01_000006_create_daybook_table.php
+│       │   │   ├── 2024_01_01_000007_create_vouchers_table.php
+│       │   │   ├── 2024_01_01_000008_create_masjids_table.php
+│       │   │   ├── 2024_01_01_000009_create_member_tables.php
+│       │   │   ├── 2024_01_01_000010_create_marriage_tables.php
+│       │   │   ├── 2024_01_01_000011_create_mahalla_tables.php
+│       │   │   ├── 2024_01_01_000012_create_madrassa_tables.php
+│       │   │   ├── 2024_01_01_000013_create_waqf_tables.php
+│       │   │   ├── 2024_01_01_000014_create_rental_tables.php
+│       │   │   ├── 2024_01_01_000015_create_donation_tables.php
+│       │   │   ├── 2024_01_01_000016_create_staff_tables.php
+│       │   │   ├── 2024_01_01_000017_create_asset_tables.php
+│       │   │   ├── 2024_01_01_000018_create_meeting_tables.php
+│       │   │   ├── 2024_01_01_000019_create_notification_tables.php
+│       │   │   ├── 2024_01_01_000020_create_prayer_tables.php
+│       │   │   ├── 2024_01_01_000021_create_report_tables.php
+│       │   │   ├── 2024_01_01_000022_create_audit_logs_table.php
+│       │   │   └── 2024_01_01_000023_create_settings_tables.php
+│       │   ├── seeders/
+│       │   │   ├── DatabaseSeeder.php
+│       │   │   ├── PermissionSeeder.php
+│       │   │   ├── RoleSeeder.php
+│       │   │   ├── AdminUserSeeder.php
+│       │   │   ├── PlanSeeder.php
+│       │   │   ├── AccountSeeder.php
+│       │   │   ├── MasjidSeeder.php
+│       │   │   ├── MemberTypeSeeder.php
+│       │   │   ├── MadrassaSeeder.php
+│       │   │   ├── WaqfSeeder.php
+│       │   │   ├── DefaultDataSeeder.php
+│       │   │   └── DemoDataSeeder.php
+│       │   └── sql/
+│       │       ├── accounting/
+│       │       │   ├── default_accounts.sql
+│       │       │   └── account_groups.sql
+│       │       ├── masjid/
+│       │       │   ├── default_masjids.sql
+│       │       │   └── default_prayer_times.sql
+│       │       ├── madrassa/
+│       │       │   ├── default_classes.sql
+│       │       │   └── default_subjects.sql
+│       │       └── system/
+│       │           ├── default_plans.sql
+│       │           └── default_permissions.sql
+│       │
+│       ├── public/
+│       │   ├── index.php
+│       │   ├── .htaccess
+│       │   ├── css/
+│       │   │   ├── admin/
+│       │   │   │   ├── app.css
+│       │   │   │   ├── vendor.css
+│       │   │   │   └── custom.css
+│       │   │   ├── member/
+│       │   │   │   ├── app.css
+│       │   │   │   └── custom.css
+│       │   │   └── web/
+│       │   │       ├── app.css
+│       │   │       └── style.css
+│       │   ├── js/
+│       │   │   ├── admin/
+│       │   │   │   ├── app.js
+│       │   │   │   ├── vendor.js
+│       │   │   │   ├── dashboard.js
+│       │   │   │   ├── prayer.js
+│       │   │   │   ├── accounting.js
+│       │   │   │   ├── madrassa.js
+│       │   │   │   ├── waqf.js
+│       │   │   │   └── member.js
+│       │   │   ├── member/
+│       │   │   │   ├── app.js
+│       │   │   │   ├── dashboard.js
+│       │   │   │   └── donation.js
+│       │   │   └── web/
+│       │   │       ├── app.js
+│       │   │       └── prayer.js
+│       │   ├── images/
+│       │   │   ├── masjids/
+│       │   │   ├── logos/
+│       │   │   ├── icons/
+│       │   │   ├── default/
+│       │   │   └── islamic/
+│       │   ├── uploads/
+│       │   │   ├── documents/
+│       │   │   │   ├── members/
+│       │   │   │   ├── students/
+│       │   │   │   ├── staff/
+│       │   │   │   ├── waqf/
+│       │   │   │   └── rental/
+│       │   │   ├── invoices/
+│       │   │   ├── receipts/
+│       │   │   ├── reports/
+│       │   │   ├── profile/
+│       │   │   └── assets/
+│       │   └── fonts/
+│       │
+│       ├── resources/
+│       │   ├── css/
+│       │   │   └── app.css
+│       │   ├── js/
+│       │   │   ├── app.js
+│       │   │   ├── bootstrap.js
+│       │   │   └── components/
+│       │   ├── lang/
+│       │   │   ├── en/
+│       │   │   │   ├── auth.php
+│       │   │   │   ├── masjid.php
+│       │   │   │   ├── member.php
+│       │   │   │   ├── madrassa.php
+│       │   │   │   ├── waqf.php
+│       │   │   │   ├── donation.php
+│       │   │   │   ├── accounting.php
+│       │   │   │   ├── reports.php
+│       │   │   │   ├── notifications.php
+│       │   │   │   ├── validation.php
+│       │   │   │   ├── pagination.php
+│       │   │   │   └── islamic.php
+│       │   │   ├── ar/
+│       │   │   │   ├── auth.php
+│       │   │   │   ├── masjid.php
+│       │   │   │   └── ...
+│       │   │   └── ur/
+│       │   │       └── ...
+│       │   ├── views/
+│       │   │   ├── admin/
+│       │   │   │   ├── layouts/
+│       │   │   │   │   ├── app.blade.php
+│       │   │   │   │   ├── sidebar.blade.php
+│       │   │   │   │   └── header.blade.php
+│       │   │   │   ├── dashboard/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   ├── widgets.blade.php
+│       │   │   │   │   └── analytics.blade.php
+│       │   │   │   ├── masjid/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   ├── create.blade.php
+│       │   │   │   │   ├── edit.blade.php
+│       │   │   │   │   ├── show.blade.php
+│       │   │   │   │   └── partials/
+│       │   │   │   │       ├── prayer-times.blade.php
+│       │   │   │   │       ├── events.blade.php
+│       │   │   │   │       └── committees.blade.php
+│       │   │   │   ├── members/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   ├── create.blade.php
+│       │   │   │   │   ├── edit.blade.php
+│       │   │   │   │   ├── show.blade.php
+│       │   │   │   │   └── partials/
+│       │   │   │   │       ├── family.blade.php
+│       │   │   │   │       ├── documents.blade.php
+│       │   │   │   │       └── contributions.blade.php
+│       │   │   │   ├── mahalla/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   ├── create.blade.php
+│       │   │   │   │   ├── edit.blade.php
+│       │   │   │   │   └── show.blade.php
+│       │   │   │   ├── marriage/
+│       │   │   │   │   ├── registrations.blade.php
+│       │   │   │   │   ├── create.blade.php
+│       │   │   │   │   ├── show.blade.php
+│       │   │   │   │   ├── noc.blade.php
+│       │   │   │   │   └── certificates.blade.php
+│       │   │   │   ├── madrassa/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   ├── students/
+│       │   │   │   │   │   ├── index.blade.php
+│       │   │   │   │   │   ├── create.blade.php
+│       │   │   │   │   │   ├── edit.blade.php
+│       │   │   │   │   │   └── show.blade.php
+│       │   │   │   │   ├── teachers/
+│       │   │   │   │   │   ├── index.blade.php
+│       │   │   │   │   │   ├── create.blade.php
+│       │   │   │   │   │   └── show.blade.php
+│       │   │   │   │   ├── classes/
+│       │   │   │   │   │   ├── index.blade.php
+│       │   │   │   │   │   ├── create.blade.php
+│       │   │   │   │   │   └── edit.blade.php
+│       │   │   │   │   ├── exams/
+│       │   │   │   │   │   ├── index.blade.php
+│       │   │   │   │   │   ├── create.blade.php
+│       │   │   │   │   │   └── results.blade.php
+│       │   │   │   │   └── fees/
+│       │   │   │   │       ├── index.blade.php
+│       │   │   │   │       ├── create.blade.php
+│       │   │   │   │       └── transactions.blade.php
+│       │   │   │   ├── waqf/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   ├── properties/
+│       │   │   │   │   │   ├── index.blade.php
+│       │   │   │   │   │   ├── create.blade.php
+│       │   │   │   │   │   └── show.blade.php
+│       │   │   │   │   ├── tenants/
+│       │   │   │   │   │   ├── index.blade.php
+│       │   │   │   │   │   └── create.blade.php
+│       │   │   │   │   ├── leases/
+│       │   │   │   │   │   ├── index.blade.php
+│       │   │   │   │   │   ├── create.blade.php
+│       │   │   │   │   │   └── show.blade.php
+│       │   │   │   │   └── rent/
+│       │   │   │   │       ├── index.blade.php
+│       │   │   │   │       ├── collect.blade.php
+│       │   │   │   │       └── reports.blade.php
+│       │   │   │   ├── rental/
+│       │   │   │   │   ├── utensils/
+│       │   │   │   │   │   ├── index.blade.php
+│       │   │   │   │   │   ├── create.blade.php
+│       │   │   │   │   │   └── edit.blade.php
+│       │   │   │   │   ├── rentals/
+│       │   │   │   │   │   ├── index.blade.php
+│       │   │   │   │   │   ├── create.blade.php
+│       │   │   │   │   │   └── show.blade.php
+│       │   │   │   │   └── buildings/
+│       │   │   │   │       ├── index.blade.php
+│       │   │   │   │       ├── create.blade.php
+│       │   │   │   │       └── agreements.blade.php
+│       │   │   │   ├── financial/
+│       │   │   │   │   ├── accounting/
+│       │   │   │   │   │   ├── accounts/
+│       │   │   │   │   │   │   ├── index.blade.php
+│       │   │   │   │   │   │   ├── create.blade.php
+│       │   │   │   │   │   │   └── ledger.blade.php
+│       │   │   │   │   │   ├── vouchers/
+│       │   │   │   │   │   │   ├── index.blade.php
+│       │   │   │   │   │   │   ├── create.blade.php
+│       │   │   │   │   │   │   └── show.blade.php
+│       │   │   │   │   │   └── reports/
+│       │   │   │   │   │       ├── trial-balance.blade.php
+│       │   │   │   │   │       ├── profit-loss.blade.php
+│       │   │   │   │   │       └── balance-sheet.blade.php
+│       │   │   │   │   ├── donations/
+│       │   │   │   │   │   ├── index.blade.php
+│       │   │   │   │   │   ├── create.blade.php
+│       │   │   │   │   │   └── receipts.blade.php
+│       │   │   │   │   ├── receipts/
+│       │   │   │   │   │   ├── index.blade.php
+│       │   │   │   │   │   ├── create.blade.php
+│       │   │   │   │   │   └── print.blade.php
+│       │   │   │   │   ├── payments/
+│       │   │   │   │   │   ├── index.blade.php
+│       │   │   │   │   │   ├── create.blade.php
+│       │   │   │   │   │   └── approval.blade.php
+│       │   │   │   │   ├── credit-notes/
+│       │   │   │   │   │   ├── index.blade.php
+│       │   │   │   │   │   └── create.blade.php
+│       │   │   │   │   └── debit-notes/
+│       │   │   │   │       ├── index.blade.php
+│       │   │   │   │       └── create.blade.php
+│       │   │   │   ├── staff/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   ├── create.blade.php
+│       │   │   │   │   ├── edit.blade.php
+│       │   │   │   │   ├── show.blade.php
+│       │   │   │   │   ├── payroll.blade.php
+│       │   │   │   │   └── attendance.blade.php
+│       │   │   │   ├── assets/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   ├── create.blade.php
+│       │   │   │   │   ├── edit.blade.php
+│       │   │   │   │   └── maintenance.blade.php
+│       │   │   │   ├── meetings/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   ├── create.blade.php
+│       │   │   │   │   ├── show.blade.php
+│       │   │   │   │   └── minutes.blade.php
+│       │   │   │   ├── reports/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   ├── financial.blade.php
+│       │   │   │   │   ├── donation.blade.php
+│       │   │   │   │   ├── madrassa.blade.php
+│       │   │   │   │   ├── waqf.blade.php
+│       │   │   │   │   └── staff.blade.php
+│       │   │   │   ├── users/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   ├── create.blade.php
+│       │   │   │   │   ├── edit.blade.php
+│       │   │   │   │   └── profile.blade.php
+│       │   │   │   ├── settings/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   ├── general.blade.php
+│       │   │   │   │   ├── payment.blade.php
+│       │   │   │   │   ├── email.blade.php
+│       │   │   │   │   ├── prayer.blade.php
+│       │   │   │   │   └── subscription.blade.php
+│       │   │   │   └── notifications/
+│       │   │   │       ├── index.blade.php
+│       │   │   │       ├── templates.blade.php
+│       │   │   │       └── types.blade.php
+│       │   │   ├── member/
+│       │   │   │   ├── layouts/
+│       │   │   │   │   ├── app.blade.php
+│       │   │   │   │   └── dashboard.blade.php
+│       │   │   │   ├── dashboard/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   └── widgets.blade.php
+│       │   │   │   ├── profile/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   ├── edit.blade.php
+│       │   │   │   │   ├── family.blade.php
+│       │   │   │   │   └── documents.blade.php
+│       │   │   │   ├── donations/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   ├── create.blade.php
+│       │   │   │   │   ├── history.blade.php
+│       │   │   │   │   └── recurring.blade.php
+│       │   │   │   ├── receipts/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   └── view.blade.php
+│       │   │   │   ├── children/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   ├── show.blade.php
+│       │   │   │   │   ├── progress.blade.php
+│       │   │   │   │   └── attendance.blade.php
+│       │   │   │   ├── payments/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   └── history.blade.php
+│       │   │   │   ├── events/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   └── register.blade.php
+│       │   │   │   └── settings/
+│       │   │   │       ├── index.blade.php
+│       │   │   │       └── preferences.blade.php
+│       │   │   ├── web/
+│       │   │   │   ├── layouts/
+│       │   │   │   │   ├── app.blade.php
+│       │   │   │   │   └── auth.blade.php
+│       │   │   │   ├── home/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   └── about.blade.php
+│       │   │   │   ├── prayer/
+│       │   │   │   │   ├── times.blade.php
+│       │   │   │   │   └── calendar.blade.php
+│       │   │   │   ├── events/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   └── show.blade.php
+│       │   │   │   ├── contact/
+│       │   │   │   │   ├── index.blade.php
+│       │   │   │   │   └── form.blade.php
+│       │   │   │   └── auth/
+│       │   │   │       ├── login.blade.php
+│       │   │   │       ├── register.blade.php
+│       │   │   │       └── forgot-password.blade.php
+│       │   │   ├── emails/
+│       │   │   │   ├── member/
+│       │   │   │   │   ├── welcome.blade.php
+│       │   │   │   │   └── renewal.blade.php
+│       │   │   │   ├── donation/
+│       │   │   │   │   ├── confirmation.blade.php
+│       │   │   │   │   └── receipt.blade.php
+│       │   │   │   ├── madrassa/
+│       │   │   │   │   ├── enrollment.blade.php
+│       │   │   │   │   ├── result.blade.php
+│       │   │   │   │   └── progress.blade.php
+│       │   │   │   ├── rental/
+│       │   │   │   │   ├── confirmation.blade.php
+│       │   │   │   │   └── invoice.blade.php
+│       │   │   │   └── system/
+│       │   │   │       ├── password-reset.blade.php
+│       │   │   │       └── alert.blade.php
+│       │   │   └── pdf/
+│       │   │       ├── receipts/
+│       │   │       │   └── receipt.blade.php
+│       │   │       ├── invoices/
+│       │   │       │   └── invoice.blade.php
+│       │   │       ├── certificates/
+│       │   │       │   ├── marriage.blade.php
+│       │   │       │   └── noc.blade.php
+│       │   │       └── reports/
+│       │   │           ├── financial.blade.php
+│       │   │           └── donation.blade.php
+│       │   ├── views/
+│       │   └── ...
+│       │
+│       ├── routes/
+│       │   ├── api.php
+│       │   ├── web.php
+│       │   ├── admin.php
+│       │   ├── member.php
+│       │   ├── channels.php
+│       │   └── console.php
+│       │
+│       ├── storage/
+│       │   ├── app/
+│       │   │   ├── public/
+│       │   │   │   ├── masjids/
+│       │   │   │   ├── members/
+│       │   │   │   ├── students/
+│       │   │   │   ├── staff/
+│       │   │   │   ├── waqf/
+│       │   │   │   ├── rentals/
+│       │   │   │   ├── documents/
+│       │   │   │   ├── invoices/
+│       │   │   │   ├── receipts/
+│       │   │   │   ├── reports/
+│       │   │   │   └── profile/
+│       │   │   ├── private/
+│       │   │   │   ├── backups/
+│       │   │   │   └── logs/
+│       │   │   └── temp/
+│       │   ├── framework/
+│       │   │   ├── cache/
+│       │   │   ├── sessions/
+│       │   │   └── views/
+│       │   └── logs/
+│       │       ├── laravel.log
+│       │       └── daily/
+│       │
+│       ├── tests/
+│       │   ├── Unit/
+│       │   │   ├── Accounting/
+│       │   │   │   ├── AccountTest.php
+│       │   │   │   ├── VoucherTest.php
+│       │   │   │   └── LedgerTest.php
+│       │   │   ├── Member/
+│       │   │   │   ├── MemberTest.php
+│       │   │   │   └── MembershipTest.php
+│       │   │   ├── Madrassa/
+│       │   │   │   ├── StudentTest.php
+│       │   │   │   ├── ExamTest.php
+│       │   │   │   └── FeeTest.php
+│       │   │   ├── Waqf/
+│       │   │   │   ├── PropertyTest.php
+│       │   │   │   └── LeaseTest.php
+│       │   │   ├── Rental/
+│       │   │   │   ├── UtensilTest.php
+│       │   │   │   └── RentalTest.php
+│       │   │   └── System/
+│       │   │       ├── UserTest.php
+│       │   │       ├── CompanyTest.php
+│       │   │       └── SubscriptionTest.php
+│       │   ├── Feature/
+│       │   │   ├── API/
+│       │   │   │   ├── Auth/
+│       │   │   │   ├── Member/
+│       │   │   │   ├── Madrassa/
+│       │   │   │   ├── Waqf/
+│       │   │   │   ├── Rental/
+│       │   │   │   ├── Accounting/
+│       │   │   │   └── Reports/
+│       │   │   ├── Admin/
+│       │   │   ├── MemberPortal/
+│       │   │   └── Web/
+│       │   └── TestCase.php
+│       │
+│       ├── .env
+│       ├── .env.example
+│       ├── .env.testing
+│       ├── .gitignore
+│       ├── artisan
+│       ├── composer.json
+│       ├── composer.lock
+│       ├── package.json
+│       ├── package-lock.json
+│       ├── webpack.mix.js
+│       ├── phpunit.xml
+│       ├── server.php
+│       └── README.md
+│
+├── frontend/
+│   ├── web-admin/
+│   │   ├── src/
+│   │   │   ├── components/
+│   │   │   │   ├── common/
+│   │   │   │   │   ├── Header.jsx
+│   │   │   │   │   ├── Sidebar.jsx
+│   │   │   │   │   ├── Footer.jsx
+│   │   │   │   │   ├── Breadcrumb.jsx
+│   │   │   │   │   ├── LoadingSpinner.jsx
+│   │   │   │   │   ├── ErrorBoundary.jsx
+│   │   │   │   │   └── ArabicText.jsx
+│   │   │   │   ├── dashboard/
+│   │   │   │   │   ├── DashboardStats.jsx
+│   │   │   │   │   ├── RevenueChart.jsx
+│   │   │   │   │   ├── DonationChart.jsx
+│   │   │   │   │   ├── AttendanceChart.jsx
+│   │   │   │   │   └── RecentActivity.jsx
+│   │   │   │   ├── masjid/
+│   │   │   │   │   ├── MasjidList.jsx
+│   │   │   │   │   ├── MasjidForm.jsx
+│   │   │   │   │   ├── MasjidDetails.jsx
+│   │   │   │   │   ├── PrayerTimeManager.jsx
+│   │   │   │   │   └── EventManager.jsx
+│   │   │   │   ├── members/
+│   │   │   │   │   ├── MemberList.jsx
+│   │   │   │   │   ├── MemberForm.jsx
+│   │   │   │   │   ├── MemberDetails.jsx
+│   │   │   │   │   ├── MemberFamily.jsx
+│   │   │   │   │   └── MemberDocuments.jsx
+│   │   │   │   ├── mahalla/
+│   │   │   │   │   ├── ResidentList.jsx
+│   │   │   │   │   ├── ResidentForm.jsx
+│   │   │   │   │   └── ResidentDetails.jsx
+│   │   │   │   ├── marriage/
+│   │   │   │   │   ├── MarriageList.jsx
+│   │   │   │   │   ├── MarriageForm.jsx
+│   │   │   │   │   ├── NOCList.jsx
+│   │   │   │   │   ├── NOCForm.jsx
+│   │   │   │   │   └── CertificateGenerator.jsx
+│   │   │   │   ├── madrassa/
+│   │   │   │   │   ├── students/
+│   │   │   │   │   │   ├── StudentList.jsx
+│   │   │   │   │   │   ├── StudentForm.jsx
+│   │   │   │   │   │   └── StudentDetails.jsx
+│   │   │   │   │   ├── teachers/
+│   │   │   │   │   │   ├── TeacherList.jsx
+│   │   │   │   │   │   └── TeacherForm.jsx
+│   │   │   │   │   ├── classes/
+│   │   │   │   │   │   ├── ClassList.jsx
+│   │   │   │   │   │   ├── ClassForm.jsx
+│   │   │   │   │   │   └── ClassSchedule.jsx
+│   │   │   │   │   ├── exams/
+│   │   │   │   │   │   ├── ExamList.jsx
+│   │   │   │   │   │   ├── ExamForm.jsx
+│   │   │   │   │   │   └── ExamResults.jsx
+│   │   │   │   │   └── fees/
+│   │   │   │   │       ├── FeeStructure.jsx
+│   │   │   │   │       ├── FeeCollection.jsx
+│   │   │   │   │       └── FeeReports.jsx
+│   │   │   │   ├── waqf/
+│   │   │   │   │   ├── properties/
+│   │   │   │   │   │   ├── PropertyList.jsx
+│   │   │   │   │   │   ├── PropertyForm.jsx
+│   │   │   │   │   │   └── PropertyDetails.jsx
+│   │   │   │   │   ├── tenants/
+│   │   │   │   │   │   ├── TenantList.jsx
+│   │   │   │   │   │   └── TenantForm.jsx
+│   │   │   │   │   ├── leases/
+│   │   │   │   │   │   ├── LeaseList.jsx
+│   │   │   │   │   │   ├── LeaseForm.jsx
+│   │   │   │   │   │   └── LeaseDetails.jsx
+│   │   │   │   │   └── rent/
+│   │   │   │   │       ├── RentCollection.jsx
+│   │   │   │   │       └── RentReports.jsx
+│   │   │   │   ├── rental/
+│   │   │   │   │   ├── utensils/
+│   │   │   │   │   │   ├── UtensilList.jsx
+│   │   │   │   │   │   ├── UtensilForm.jsx
+│   │   │   │   │   │   └── UtensilInventory.jsx
+│   │   │   │   │   ├── rentals/
+│   │   │   │   │   │   ├── RentalList.jsx
+│   │   │   │   │   │   ├── RentalForm.jsx
+│   │   │   │   │   │   └── RentalDetails.jsx
+│   │   │   │   │   └── buildings/
+│   │   │   │   │       ├── BuildingList.jsx
+│   │   │   │   │       ├── BuildingForm.jsx
+│   │   │   │   │       └── AgreementForm.jsx
+│   │   │   │   ├── financial/
+│   │   │   │   │   ├── accounting/
+│   │   │   │   │   │   ├── accounts/
+│   │   │   │   │   │   │   ├── AccountList.jsx
+│   │   │   │   │   │   │   ├── AccountForm.jsx
+│   │   │   │   │   │   │   └── AccountLedger.jsx
+│   │   │   │   │   │   ├── vouchers/
+│   │   │   │   │   │   │   ├── VoucherList.jsx
+│   │   │   │   │   │   │   └── VoucherForm.jsx
+│   │   │   │   │   │   └── reports/
+│   │   │   │   │   │       ├── TrialBalance.jsx
+│   │   │   │   │   │       ├── ProfitLoss.jsx
+│   │   │   │   │   │       └── BalanceSheet.jsx
+│   │   │   │   │   ├── donations/
+│   │   │   │   │   │   ├── DonationList.jsx
+│   │   │   │   │   │   ├── DonationForm.jsx
+│   │   │   │   │   │   └── DonorManagement.jsx
+│   │   │   │   │   ├── receipts/
+│   │   │   │   │   │   ├── ReceiptList.jsx
+│   │   │   │   │   │   ├── ReceiptForm.jsx
+│   │   │   │   │   │   └── ReceiptTemplate.jsx
+│   │   │   │   │   ├── payments/
+│   │   │   │   │   │   ├── PaymentList.jsx
+│   │   │   │   │   │   ├── PaymentForm.jsx
+│   │   │   │   │   │   └── ApprovalWorkflow.jsx
+│   │   │   │   │   ├── credit-notes/
+│   │   │   │   │   │   ├── CreditNoteList.jsx
+│   │   │   │   │   │   └── CreditNoteForm.jsx
+│   │   │   │   │   └── debit-notes/
+│   │   │   │   │       ├── DebitNoteList.jsx
+│   │   │   │   │       └── DebitNoteForm.jsx
+│   │   │   │   ├── staff/
+│   │   │   │   │   ├── StaffList.jsx
+│   │   │   │   │   ├── StaffForm.jsx
+│   │   │   │   │   ├── StaffDetails.jsx
+│   │   │   │   │   ├── PayrollManager.jsx
+│   │   │   │   │   └── AttendanceManager.jsx
+│   │   │   │   ├── assets/
+│   │   │   │   │   ├── AssetList.jsx
+│   │   │   │   │   ├── AssetForm.jsx
+│   │   │   │   │   ├── MaintenanceScheduler.jsx
+│   │   │   │   │   └── DepreciationCalculator.jsx
+│   │   │   │   ├── meetings/
+│   │   │   │   │   ├── MeetingList.jsx
+│   │   │   │   │   ├── MeetingForm.jsx
+│   │   │   │   │   ├── MeetingMinutes.jsx
+│   │   │   │   │   └── ActionTracker.jsx
+│   │   │   │   ├── reports/
+│   │   │   │   │   ├── ReportList.jsx
+│   │   │   │   │   ├── ReportBuilder.jsx
+│   │   │   │   │   ├── ReportViewer.jsx
+│   │   │   │   │   └── ExportManager.jsx
+│   │   │   │   ├── users/
+│   │   │   │   │   ├── UserList.jsx
+│   │   │   │   │   ├── UserForm.jsx
+│   │   │   │   │   ├── UserProfile.jsx
+│   │   │   │   │   └── RolePermission.jsx
+│   │   │   │   ├── settings/
+│   │   │   │   │   ├── GeneralSettings.jsx
+│   │   │   │   │   ├── PaymentSettings.jsx
+│   │   │   │   │   ├── EmailSettings.jsx
+│   │   │   │   │   ├── PrayerSettings.jsx
+│   │   │   │   │   └── SubscriptionSettings.jsx
+│   │   │   │   └── notifications/
+│   │   │   │       ├── NotificationList.jsx
+│   │   │   │       ├── TemplateManager.jsx
+│   │   │   │       └── BroadcastCenter.jsx
+│   │   │   ├── pages/
+│   │   │   │   ├── Dashboard.jsx
+│   │   │   │   ├── Masjid/
+│   │   │   │   │   ├── Masjids.jsx
+│   │   │   │   │   ├── CreateMasjid.jsx
+│   │   │   │   │   ├── MasjidDetail.jsx
+│   │   │   │   │   ├── PrayerTimes.jsx
+│   │   │   │   │   └── Events.jsx
+│   │   │   │   ├── Members/
+│   │   │   │   │   ├── Members.jsx
+│   │   │   │   │   ├── CreateMember.jsx
+│   │   │   │   │   └── MemberDetail.jsx
+│   │   │   │   ├── Mahalla/
+│   │   │   │   │   ├── Residents.jsx
+│   │   │   │   │   └── ResidentDetail.jsx
+│   │   │   │   ├── Marriage/
+│   │   │   │   │   ├── Registrations.jsx
+│   │   │   │   │   ├── CreateRegistration.jsx
+│   │   │   │   │   ├── NOCRequests.jsx
+│   │   │   │   │   └── Certificates.jsx
+│   │   │   │   ├── Madrassa/
+│   │   │   │   │   ├── Students.jsx
+│   │   │   │   │   ├── CreateStudent.jsx
+│   │   │   │   │   ├── StudentDetail.jsx
+│   │   │   │   │   ├── Teachers.jsx
+│   │   │   │   │   ├── Classes.jsx
+│   │   │   │   │   ├── Exams.jsx
+│   │   │   │   │   └── Fees.jsx
+│   │   │   │   ├── Waqf/
+│   │   │   │   │   ├── Properties.jsx
+│   │   │   │   │   ├── CreateProperty.jsx
+│   │   │   │   │   ├── PropertyDetail.jsx
+│   │   │   │   │   ├── Tenants.jsx
+│   │   │   │   │   ├── Leases.jsx
+│   │   │   │   │   └── RentCollection.jsx
+│   │   │   │   ├── Rental/
+│   │   │   │   │   ├── Utensils.jsx
+│   │   │   │   │   ├── CreateUtensil.jsx
+│   │   │   │   │   ├── Rentals.jsx
+│   │   │   │   │   ├── CreateRental.jsx
+│   │   │   │   │   ├── Buildings.jsx
+│   │   │   │   │   └── Agreements.jsx
+│   │   │   │   ├── Financial/
+│   │   │   │   │   ├── Accounting/
+│   │   │   │   │   │   ├── Accounts.jsx
+│   │   │   │   │   │   ├── CreateAccount.jsx
+│   │   │   │   │   │   ├── Vouchers.jsx
+│   │   │   │   │   │   ├── CreateVoucher.jsx
+│   │   │   │   │   │   └── Ledger.jsx
+│   │   │   │   │   ├── Donations/
+│   │   │   │   │   │   ├── Donations.jsx
+│   │   │   │   │   │   ├── CreateDonation.jsx
+│   │   │   │   │   │   ├── Donors.jsx
+│   │   │   │   │   │   └── Receipts.jsx
+│   │   │   │   │   ├── Payments/
+│   │   │   │   │   │   ├── Payments.jsx
+│   │   │   │   │   │   └── CreatePayment.jsx
+│   │   │   │   │   ├── CreditNotes/
+│   │   │   │   │   │   ├── CreditNotes.jsx
+│   │   │   │   │   │   └── CreateCreditNote.jsx
+│   │   │   │   │   └── DebitNotes/
+│   │   │   │   │       ├── DebitNotes.jsx
+│   │   │   │   │       └── CreateDebitNote.jsx
+│   │   │   │   ├── Staff/
+│   │   │   │   │   ├── Staff.jsx
+│   │   │   │   │   ├── CreateStaff.jsx
+│   │   │   │   │   ├── StaffDetail.jsx
+│   │   │   │   │   ├── Payroll.jsx
+│   │   │   │   │   └── Attendance.jsx
+│   │   │   │   ├── Assets/
+│   │   │   │   │   ├── Assets.jsx
+│   │   │   │   │   ├── CreateAsset.jsx
+│   │   │   │   │   └── Maintenance.jsx
+│   │   │   │   ├── Meetings/
+│   │   │   │   │   ├── Meetings.jsx
+│   │   │   │   │   ├── CreateMeeting.jsx
+│   │   │   │   │   ├── MeetingDetail.jsx
+│   │   │   │   │   └── Minutes.jsx
+│   │   │   │   ├── Reports/
+│   │   │   │   │   ├── Reports.jsx
+│   │   │   │   │   ├── FinancialReports.jsx
+│   │   │   │   │   ├── DonationReports.jsx
+│   │   │   │   │   ├── MadrassaReports.jsx
+│   │   │   │   │   └── WaqfReports.jsx
+│   │   │   │   ├── Users.jsx
+│   │   │   │   ├── Settings.jsx
+│   │   │   │   └── Login.jsx
+│   │   │   ├── store/
+│   │   │   │   ├── index.js
+│   │   │   │   ├── slices/
+│   │   │   │   │   ├── auth.js
+│   │   │   │   │   ├── masjid.js
+│   │   │   │   │   ├── member.js
+│   │   │   │   │   ├── mahalla.js
+│   │   │   │   │   ├── marriage.js
+│   │   │   │   │   ├── madrassa.js
+│   │   │   │   │   ├── waqf.js
+│   │   │   │   │   ├── rental.js
+│   │   │   │   │   ├── donation.js
+│   │   │   │   │   ├── accounting.js
+│   │   │   │   │   ├── staff.js
+│   │   │   │   │   ├── asset.js
+│   │   │   │   │   ├── meeting.js
+│   │   │   │   │   ├── report.js
+│   │   │   │   │   └── settings.js
+│   │   │   │   └── actions/
+│   │   │   ├── services/
+│   │   │   │   ├── api/
+│   │   │   │   │   ├── auth.js
+│   │   │   │   │   ├── masjid.js
+│   │   │   │   │   ├── member.js
+│   │   │   │   │   ├── mahalla.js
+│   │   │   │   │   ├── marriage.js
+│   │   │   │   │   ├── madrassa.js
+│   │   │   │   │   ├── waqf.js
+│   │   │   │   │   ├── rental.js
+│   │   │   │   │   ├── donation.js
+│   │   │   │   │   ├── accounting.js
+│   │   │   │   │   ├── staff.js
+│   │   │   │   │   ├── asset.js
+│   │   │   │   │   ├── meeting.js
+│   │   │   │   │   ├── report.js
+│   │   │   │   │   └── notification.js
+│   │   │   │   ├── axios.js
+│   │   │   │   ├── websocket.js
+│   │   │   │   └── prayer.js
+│   │   │   ├── utils/
+│   │   │   │   ├── constants.js
+│   │   │   │   ├── helpers.js
+│   │   │   │   ├── validators.js
+│   │   │   │   ├── formatters.js
+│   │   │   │   ├── permissions.js
+│   │   │   │   ├── islamic.js
+│   │   │   │   └── hijri.js
+│   │   │   ├── hooks/
+│   │   │   │   ├── useAuth.js
+│   │   │   │   ├── useMasjid.js
+│   │   │   │   ├── useMember.js
+│   │   │   │   ├── useMadrassa.js
+│   │   │   │   └── useNotification.js
+│   │   │   ├── styles/
+│   │   │   │   ├── app.css
+│   │   │   │   ├── variables.css
+│   │   │   │   ├── islamic.css
+│   │   │   │   └── themes/
+│   │   │   ├── App.jsx
+│   │   │   ├── App.css
+│   │   │   ├── index.jsx
+│   │   │   └── index.css
+│   │   ├── public/
+│   │   │   ├── index.html
+│   │   │   ├── favicon.ico
+│   │   │   └── manifest.json
+│   │   ├── package.json
+│   │   ├── package-lock.json
+│   │   ├── .env
+│   │   ├── .env.example
+│   │   ├── .gitignore
+│   │   ├── README.md
+│   │   ├── vite.config.js
+│   │   └── tailwind.config.js
+│   │
+│   └── mobile-app/
+│       └── flutter/
+│           ├── lib/
+│           │   ├── main.dart
+│           │   ├── app.dart
+│           │   ├── routes.dart
+│           │   ├── themes.dart
+│           │   ├── models/
+│           │   │   ├── auth/
+│           │   │   │   ├── user.dart
+│           │   │   │   ├── company.dart
+│           │   │   │   └── session.dart
+│           │   │   ├── masjid/
+│           │   │   │   ├── masjid.dart
+│           │   │   │   ├── prayer_time.dart
+│           │   │   │   └── event.dart
+│           │   │   ├── member/
+│           │   │   │   ├── member.dart
+│           │   │   │   ├── member_type.dart
+│           │   │   │   └── member_document.dart
+│           │   │   ├── madrassa/
+│           │   │   │   ├── student.dart
+│           │   │   │   ├── teacher.dart
+│           │   │   │   ├── class.dart
+│           │   │   │   ├── exam.dart
+│           │   │   │   └── fee.dart
+│           │   │   ├── donation/
+│           │   │   │   ├── donation.dart
+│           │   │   │   ├── donor.dart
+│           │   │   │   └── category.dart
+│           │   │   ├── financial/
+│           │   │   │   ├── receipt.dart
+│           │   │   │   ├── payment.dart
+│           │   │   │   └── invoice.dart
+│           │   │   ├── rental/
+│           │   │   │   ├── utensil.dart
+│           │   │   │   └── rental.dart
+│           │   │   ├── waqf/
+│           │   │   │   ├── property.dart
+│           │   │   │   └── lease.dart
+│           │   │   └── notification/
+│           │   │       ├── notification.dart
+│           │   │       └── preference.dart
+│           │   ├── providers/
+│           │   │   ├── auth_provider.dart
+│           │   │   ├── masjid_provider.dart
+│           │   │   ├── member_provider.dart
+│           │   │   ├── madrassa_provider.dart
+│           │   │   ├── donation_provider.dart
+│           │   │   ├── prayer_provider.dart
+│           │   │   ├── notification_provider.dart
+│           │   │   └── settings_provider.dart
+│           │   ├── screens/
+│           │   │   ├── splash/
+│           │   │   │   └── splash_screen.dart
+│           │   │   ├── onboarding/
+│           │   │   │   ├── onboarding_screen.dart
+│           │   │   │   └── welcome_screen.dart
+│           │   │   ├── auth/
+│           │   │   │   ├── login_screen.dart
+│           │   │   │   ├── register_screen.dart
+│           │   │   │   ├── forgot_password_screen.dart
+│           │   │   │   └── otp_verification_screen.dart
+│           │   │   ├── home/
+│           │   │   │   ├── home_screen.dart
+│           │   │   │   ├── dashboard.dart
+│           │   │   │   └── quick_actions.dart
+│           │   │   ├── prayer/
+│           │   │   │   ├── prayer_times_screen.dart
+│           │   │   │   ├── qibla_screen.dart
+│           │   │   │   └── calendar_screen.dart
+│           │   │   ├── member/
+│           │   │   │   ├── profile_screen.dart
+│           │   │   │   ├── edit_profile_screen.dart
+│           │   │   │   ├── family_screen.dart
+│           │   │   │   └── documents_screen.dart
+│           │   │   ├── donation/
+│           │   │   │   ├── donation_screen.dart
+│           │   │   │   ├── donation_history_screen.dart
+│           │   │   │   ├── recurring_donation_screen.dart
+│           │   │   │   └── receipt_screen.dart
+│           │   │   ├── madrassa/
+│           │   │   │   ├── children_screen.dart
+│           │   │   │   ├── child_detail_screen.dart
+│           │   │   │   ├── attendance_screen.dart
+│           │   │   │   ├── exam_results_screen.dart
+│           │   │   │   └── fee_payment_screen.dart
+│           │   │   ├── events/
+│           │   │   │   ├── events_screen.dart
+│           │   │   │   ├── event_detail_screen.dart
+│           │   │   │   └── registration_screen.dart
+│           │   │   ├── rental/
+│           │   │   │   ├── utensils_screen.dart
+│           │   │   │   ├── rental_form_screen.dart
+│           │   │   │   └── my_rentals_screen.dart
+│           │   │   ├── notification/
+│           │   │   │   ├── notification_list_screen.dart
+│           │   │   │   └── notification_detail_screen.dart
+│           │   │   └── settings/
+│           │   │       ├── settings_screen.dart
+│           │   │       ├── preferences_screen.dart
+│           │   │       └── help_support_screen.dart
+│           │   ├── widgets/
+│           │   │   ├── common/
+│           │   │   │   ├── app_bar.dart
+│           │   │   │   ├── bottom_navigation.dart
+│           │   │   │   ├── loading_widget.dart
+│           │   │   │   ├── error_widget.dart
+│           │   │   │   ├── empty_state.dart
+│           │   │   │   ├── custom_dialog.dart
+│           │   │   │   ├── prayer_clock.dart
+│           │   │   │   └── arabic_text.dart
+│           │   │   ├── prayer/
+│           │   │   │   ├── prayer_time_card.dart
+│           │   │   │   ├── countdown_timer.dart
+│           │   │   │   └── qibla_compass.dart
+│           │   │   ├── member/
+│           │   │   │   ├── member_card.dart
+│           │   │   │   └── family_member_card.dart
+│           │   │   ├── donation/
+│           │   │   │   ├── donation_card.dart
+│           │   │   │   └── receipt_card.dart
+│           │   │   ├── madrassa/
+│           │   │   │   ├── student_card.dart
+│           │   │   │   ├── attendance_status.dart
+│           │   │   │   └── exam_result_card.dart
+│           │   │   ├── rental/
+│           │   │   │   ├── utensil_card.dart
+│           │   │   │   └── rental_status.dart
+│           │   │   └── notification/
+│           │   │       └── notification_item.dart
+│           │   ├── services/
+│           │   │   ├── api/
+│           │   │   │   ├── api_client.dart
+│           │   │   │   ├── auth_api.dart
+│           │   │   │   ├── masjid_api.dart
+│           │   │   │   ├── member_api.dart
+│           │   │   │   ├── madrassa_api.dart
+│           │   │   │   ├── donation_api.dart
+│           │   │   │   ├── rental_api.dart
+│           │   │   │   ├── prayer_api.dart
+│           │   │   │   └── notification_api.dart
+│           │   │   ├── local/
+│           │   │   │   ├── storage_service.dart
+│           │   │   │   └── cache_service.dart
+│           │   │   ├── notification/
+│           │   │   │   ├── push_notification_service.dart
+│           │   │   │   └── local_notification_service.dart
+│           │   │   ├── payment/
+│           │   │   │   ├── payment_gateway_service.dart
+│           │   │   │   └── razorpay_service.dart
+│           │   │   ├── prayer/
+│           │   │   │   ├── prayer_calculation_service.dart
+│           │   │   │   └── qibla_service.dart
+│           │   │   └── location/
+│           │   │       └── location_service.dart
+│           │   ├── utils/
+│           │   │   ├── constants.dart
+│           │   │   ├── helpers.dart
+│           │   │   ├── validators.dart
+│           │   │   ├── formatters.dart
+│           │   │   ├── colors.dart
+│           │   │   ├── images.dart
+│           │   │   ├── permissions.dart
+│           │   │   ├── hijri.dart
+│           │   │   └── islamic.dart
+│           │   ├── extensions/
+│           │   │   ├── date_extensions.dart
+│           │   │   ├── string_extensions.dart
+│           │   │   └── context_extensions.dart
+│           │   └── config/
+│           │       ├── app_config.dart
+│           │       ├── api_config.dart
+│           │       └── payment_config.dart
+│           ├── assets/
+│           │   ├── images/
+│           │   │   ├── icons/
+│           │   │   ├── logos/
+│           │   │   ├── onboarding/
+│           │   │   ├── masjid/
+│           │   │   ├── islamic/
+│           │   │   └── default/
+│           │   ├── fonts/
+│           │   │   ├── arabic/
+│           │   │   └── islamic/
+│           │   ├── sounds/
+│           │   │   ├── adhan/
+│           │   │   └── notifications/
+│           │   └── translations/
+│           │       ├── en.json
+│           │       ├── ar.json
+│           │       └── ur.json
+│           ├── pubspec.yaml
+│           ├── pubspec.lock
+│           ├── .env
+│           ├── .env.example
+│           ├── .gitignore
+│           ├── README.md
+│           ├── analysis_options.yaml
+│           ├── android/
+│           │   ├── app/
+│           │   │   ├── build.gradle
+│           │   │   ├── src/
+│           │   │   └── ...
+│           │   ├── gradle/
+│           │   │   ├── wrapper/
+│           │   │   └── gradle.properties
+│           │   ├── build.gradle
+│           │   └── settings.gradle
+│           ├── ios/
+│           │   ├── Runner/
+│           │   │   ├── AppDelegate.swift
+│           │   │   ├── Info.plist
+│           │   │   └── ...
+│           │   ├── Podfile
+│           │   ├── Podfile.lock
+│           │   └── ...
+│           └── web/
+│               ├── index.html
+│               ├── manifest.json
+│               └── ...
+│
+├── docker/
+│   ├── backend/
+│   │   ├── Dockerfile
+│   │   ├── php.ini
+│   │   ├── supervisor.conf
+│   │   └── cron/
+│   │       └── laravel
+│   ├── nginx/
+│   │   ├── Dockerfile
+│   │   ├── nginx.conf
+│   │   └── sites/
+│   │       ├── admin.conf
+│   │       ├── api.conf
+│   │       └── default.conf
+│   ├── mysql/
+│   │   ├── Dockerfile
+│   │   ├── my.cnf
+│   │   └── init/
+│   │       ├── 01-init.sql
+│   │       └── 02-default-data.sql
+│   ├── redis/
+│   │   └── Dockerfile
+│   ├── docker-compose.yml
+│   ├── docker-compose.prod.yml
+│   └── .env.docker
+│
+├── scripts/
+│   ├── deployment/
+│   │   ├── deploy.sh
+│   │   ├── setup.sh
+│   │   ├── backup.sh
+│   │   └── restore.sh
+│   ├── database/
+│   │   ├── backup.sh
+│   │   ├── restore.sh
+│   │   ├── migrate.sh
+│   │   └── seed.sh
+│   ├── utilities/
+│   │   ├── generate_docs.sh
+│   │   ├── run_tests.sh
+│   │   ├── clear_cache.sh
+│   │   ├── update_prayer_times.sh
+│   │   └── generate_api_docs.sh
+│   └── monitoring/
+│       ├── health_check.sh
+│       ├── monitor_logs.sh
+│       └── system_status.sh
+│
+├── docs/
+│   ├── api/
+│   │   ├── postman/
+│   │   │   ├── collection.json
+│   │   │   └── environment.json
+│   │   ├── swagger/
+│   │   │   ├── openapi.yaml
+│   │   │   └── index.html
+│   │   ├── authentication.md
+│   │   ├── endpoints.md
+│   │   └── README.md
+│   ├── user-guide/
+│   │   ├── admin-guide.md
+│   │   ├── member-guide.md
+│   │   ├── madrassa-guide.md
+│   │   ├── waqf-guide.md
+│   │   └── quick-start.md
+│   ├── technical/
+│   │   ├── architecture.md
+│   │   ├── database-schema.md
+│   │   ├── deployment.md
+│   │   ├── security.md
+│   │   ├── erd/
+│   │   │   ├── full-erd.png
+│   │   │   └── module-erd/
+│   │   │       ├── accounting.png
+│   │   │       ├── madrassa.png
+│   │   │       ├── waqf.png
+│   │   │       └── rental.png
+│   │   └── api-integration.md
+│   ├── accounting/
+│   │   ├── double-entry-guide.md
+│   │   ├── account-chart.md
+│   │   ├── tax-guide.md
+│   │   ├── voucher-types.md
+│   │   └── financial-reports.md
+│   ├── islamic/
+│   │   ├── prayer-calculation.md
+│   │   ├── hijri-calendar.md
+│   │   ├── waqf-guidelines.md
+│   │   ├── zakat-calculation.md
+│   │   └── shariah-compliance.md
+│   └── installation/
+│       ├── local-setup.md
+│       ├── production-deployment.md
+│       ├── docker-setup.md
+│       └── troubleshooting.md
+│
+├── tests/
+│   ├── integration/
+│   │   ├── accounting/
+│   │   ├── madrassa/
+│   │   ├── waqf/
+│   │   └── rental/
+│   ├── performance/
+│   │   ├── load-testing/
+│   │   └── stress-testing/
+│   └── security/
+│       ├── penetration-testing/
+│       └── vulnerability-scanning/
+│
+├── .github/
+│   └── workflows/
+│       ├── ci.yml
+│       ├── cd.yml
+│       ├── test.yml
+│       ├── security-scan.yml
+│       └── deploy.yml
+│
+├── .gitignore
+├── .env.example
+├── .env.testing
+├── README.md
+├── LICENSE
+├── docker-compose.yml
+├── Makefile
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+└── SECURITY.md
