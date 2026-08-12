@@ -1,0 +1,74 @@
+// Sample API Routes for Additional Modules
+Route::prefix('v1')->group(function () {
+    Route::middleware(['auth:sanctum'])->group(function () {
+        // Mahalla Management
+        Route::prefix('mahalla')->group(function () {
+            Route::get('/residents', [MahallaController::class, 'index']);
+            Route::post('/residents', [MahallaController::class, 'store']);
+            Route::get('/residents/{id}', [MahallaController::class, 'show']);
+            Route::put('/residents/{id}', [MahallaController::class, 'update']);
+            Route::delete('/residents/{id}', [MahallaController::class, 'destroy']);
+            Route::post('/residents/{id}/dependents', [MahallaController::class, 'addDependent']);
+        });
+        
+        // Marriage Management
+        Route::prefix('marriage')->group(function () {
+            Route::get('/registrations', [MarriageController::class, 'registrations']);
+            Route::post('/registrations', [MarriageController::class, 'register']);
+            Route::get('/registrations/{id}', [MarriageController::class, 'showRegistration']);
+            Route::post('/registrations/{id}/approve', [MarriageController::class, 'approve']);
+            Route::post('/noc', [MarriageController::class, 'requestNOC']);
+            Route::get('/noc/{id}', [MarriageController::class, 'showNOC']);
+        });
+        
+        // Utensil Rental
+        Route::prefix('utensils')->group(function () {
+            Route::get('/', [UtensilController::class, 'index']);
+            Route::post('/', [UtensilController::class, 'store']);
+            Route::get('/{id}', [UtensilController::class, 'show']);
+            Route::post('/{id}/rent', [UtensilController::class, 'rent']);
+            Route::post('/rentals/{id}/return', [UtensilController::class, 'return']);
+            Route::get('/rentals', [UtensilController::class, 'getRentals']);
+        });
+        
+        // Meetings
+        Route::prefix('meetings')->group(function () {
+            Route::get('/', [MeetingController::class, 'index']);
+            Route::post('/', [MeetingController::class, 'store']);
+            Route::get('/{id}', [MeetingController::class, 'show']);
+            Route::put('/{id}', [MeetingController::class, 'update']);
+            Route::post('/{id}/actions', [MeetingController::class, 'addAction']);
+            Route::put('/actions/{id}/complete', [MeetingController::class, 'completeAction']);
+        });
+        
+        // Assets
+        Route::prefix('assets')->group(function () {
+            Route::get('/', [AssetController::class, 'index']);
+            Route::post('/', [AssetController::class, 'store']);
+            Route::get('/{id}', [AssetController::class, 'show']);
+            Route::put('/{id}', [AssetController::class, 'update']);
+            Route::delete('/{id}', [AssetController::class, 'destroy']);
+            Route::post('/{id}/maintenance', [AssetController::class, 'scheduleMaintenance']);
+        });
+        
+        // Staff
+        Route::prefix('staff')->group(function () {
+            Route::get('/', [StaffController::class, 'index']);
+            Route::post('/', [StaffController::class, 'store']);
+            Route::get('/{id}', [StaffController::class, 'show']);
+            Route::put('/{id}', [StaffController::class, 'update']);
+            Route::post('/{id}/payroll', [StaffController::class, 'processPayroll']);
+            Route::get('/{id}/attendance', [StaffController::class, 'getAttendance']);
+            Route::post('/{id}/attendance', [StaffController::class, 'markAttendance']);
+        });
+        
+        // Notifications
+        Route::prefix('notifications')->group(function () {
+            Route::get('/', [NotificationController::class, 'index']);
+            Route::post('/send', [NotificationController::class, 'send']);
+            Route::get('/templates', [NotificationController::class, 'getTemplates']);
+            Route::post('/templates', [NotificationController::class, 'createTemplate']);
+            Route::get('/types', [NotificationController::class, 'getTypes']);
+        });
+    });
+});

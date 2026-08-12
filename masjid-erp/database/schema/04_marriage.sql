@@ -1,0 +1,96 @@
+-- ===========================================
+-- MARRIAGE & NOC MANAGEMENT
+-- ===========================================
+
+-- Marriage Registrations
+CREATE TABLE marriage_registrations (
+    id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    company_id BIGINT UNSIGNED NOT NULL,
+    masjid_id BIGINT UNSIGNED NOT NULL,
+    registration_id VARCHAR(50) UNIQUE NOT NULL,
+    groom_name VARCHAR(255) NOT NULL,
+    groom_father_name VARCHAR(255),
+    groom_mobile VARCHAR(20),
+    groom_address TEXT,
+    bride_name VARCHAR(255) NOT NULL,
+    bride_father_name VARCHAR(255),
+    bride_mobile VARCHAR(20),
+    bride_address TEXT,
+    marriage_date DATE NOT NULL,
+    venue VARCHAR(255),
+    officiant_name VARCHAR(255),
+    dowry_amount DECIMAL(15,2),
+    witness_1_name VARCHAR(255),
+    witness_2_name VARCHAR(255),
+    nok_name VARCHAR(255),
+    nok_contact VARCHAR(20),
+    documents JSON,
+    status ENUM('pending', 'approved', 'registered', 'cancelled') DEFAULT 'pending',
+    approved_by BIGINT UNSIGNED,
+    approved_at TIMESTAMP NULL,
+    certificate_issued BOOLEAN DEFAULT FALSE,
+    certificate_issued_at TIMESTAMP NULL,
+    created_by BIGINT UNSIGNED,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (company_id) REFERENCES companies(id),
+    FOREIGN KEY (masjid_id) REFERENCES masjids(id),
+    FOREIGN KEY (approved_by) REFERENCES users(id),
+    FOREIGN KEY (created_by) REFERENCES users(id)
+);
+
+-- Marriage NOC Requests
+CREATE TABLE marriage_noc_requests (
+    id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    company_id BIGINT UNSIGNED NOT NULL,
+    masjid_id BIGINT UNSIGNED NOT NULL,
+    noc_id VARCHAR(50) UNIQUE NOT NULL,
+    applicant_name VARCHAR(255) NOT NULL,
+    applicant_father_name VARCHAR(255),
+    applicant_mobile VARCHAR(20),
+    applicant_address TEXT,
+    marriage_registration_id BIGINT UNSIGNED,
+    purpose VARCHAR(255),
+    requested_date DATE NOT NULL,
+    status ENUM('pending', 'approved', 'rejected', 'issued') DEFAULT 'pending',
+    approved_by BIGINT UNSIGNED,
+    approved_at TIMESTAMP NULL,
+    issued_at TIMESTAMP NULL,
+    remarks TEXT,
+    created_by BIGINT UNSIGNED,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (company_id) REFERENCES companies(id),
+    FOREIGN KEY (masjid_id) REFERENCES masjids(id),
+    FOREIGN KEY (marriage_registration_id) REFERENCES marriage_registrations(id),
+    FOREIGN KEY (approved_by) REFERENCES users(id),
+    FOREIGN KEY (created_by) REFERENCES users(id)
+);
+
+-- Divorce Registrations
+CREATE TABLE divorce_registrations (
+    id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    company_id BIGINT UNSIGNED NOT NULL,
+    masjid_id BIGINT UNSIGNED NOT NULL,
+    divorce_id VARCHAR(50) UNIQUE NOT NULL,
+    marriage_registration_id BIGINT UNSIGNED,
+    husband_name VARCHAR(255) NOT NULL,
+    wife_name VARCHAR(255) NOT NULL,
+    divorce_date DATE NOT NULL,
+    divorce_type ENUM('talaq', 'khula', 'faskh', 'other') NOT NULL,
+    document_path VARCHAR(255),
+    status ENUM('pending', 'approved', 'registered', 'cancelled') DEFAULT 'pending',
+    approved_by BIGINT UNSIGNED,
+    approved_at TIMESTAMP NULL,
+    certificate_issued BOOLEAN DEFAULT FALSE,
+    certificate_issued_at TIMESTAMP NULL,
+    remarks TEXT,
+    created_by BIGINT UNSIGNED,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (company_id) REFERENCES companies(id),
+    FOREIGN KEY (masjid_id) REFERENCES masjids(id),
+    FOREIGN KEY (marriage_registration_id) REFERENCES marriage_registrations(id) ON DELETE SET NULL,
+    FOREIGN KEY (approved_by) REFERENCES users(id),
+    FOREIGN KEY (created_by) REFERENCES users(id)
+);
